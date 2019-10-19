@@ -2,9 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9188b192-5681-4978-bd8f-2d45944c99af" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/circlefile.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/little-treasure-chest.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sword.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/x.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaSE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/JavaSE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Versions.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Versions.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/built-jar.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/built-jar.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/uon/inft2051/lab04/Character.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/uon/inft2051/lab04/Coin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/uon/inft2051/lab04/TileMap.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/CodenameOne.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CodenameOne.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/CodenameOne_SRC.zip" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CodenameOne_SRC.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Map1_Collision Layer.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map1_Collision Layer.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Chest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/GameComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/MoveCircle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/MoveCircle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/TileMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/TileMap.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +46,7 @@
   <component name="ProjectId" id="1Owy78r9CbnF7wDUvqxfCaT85n6" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="C:/Program Files/Git/bin/git.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/uon/inft2051/lab04" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -39,6 +54,9 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Kiera\IdeaProjects\inft2051_lab04\src\uon\inft2051\lab04" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Kiera\IdeaProjects\inft2051_lab04\src" />
       <recent name="C:\Users\Kiera\IdeaProjects\inft2051_lab04\src\uon\inft2051\lab04" />
@@ -137,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571455501043</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="with start turn button">
+      <created>1571457061164</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1571457061164</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -153,6 +178,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="More Stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="More Stuff" />
+    <MESSAGE value="with start turn button" />
+    <option name="LAST_COMMIT_MESSAGE" value="with start turn button" />
   </component>
 </project>

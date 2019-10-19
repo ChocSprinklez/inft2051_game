@@ -90,7 +90,7 @@ public class TileMap
                         {
                             tileNames[row][col] = cells[col];
                         }
-                        else if (cells[col].length() == 5)   // a character starting position
+                        else if (cells[col].length() == 5 || cells[col].length() == 6)   // a character starting position
                         {
                             tileNames[row][col] = "";
                             int startX = col * tileSize;

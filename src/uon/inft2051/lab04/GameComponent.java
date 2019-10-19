@@ -24,7 +24,7 @@ public class GameComponent extends Component
     TileMap tmTop;
     MoveCircle turnCircle;
     int screenX, screenY;
-    ArrayList<Coin> alCoins;   // stage 5
+    ArrayList<Chest> alCoins;   // stage 5
     int lives, score, pauseCount;   // stage 5
     Image imHeart;
     Turn PlayerTurn;
@@ -63,8 +63,8 @@ public class GameComponent extends Component
 
         isPressed = false;
 
-        alCoins = new ArrayList<Coin>();   // stage 5
-        ArrayList<String> charSpecs = tmScene.getAnimats();
+        alCoins = new ArrayList<Chest>();   // stage 5
+        ArrayList<String> charSpecs = tmTop.getAnimats();
         for (String charSpec : charSpecs)
         {
             String[] tokens = charSpec.split(":");
@@ -74,9 +74,9 @@ public class GameComponent extends Component
                 String name = tokens[0].substring(1);
                 int startX = Integer.parseInt(tokens[1]);
                 int startY = Integer.parseInt(tokens[2]);
-                if (name.equals("coin"))
+                if (name.equals("chest"))
                 {
-                    Coin newCoin = new Coin("/star_coin_32t.png", 32, 1, startX, startY);
+                    Chest newCoin = new Chest("/little-treasure-chest.png", 16, 0, startX, startY);
                     alCoins.add(newCoin);
                 }
             }
@@ -144,9 +144,9 @@ public class GameComponent extends Component
         turnEnd.render(g);
         attackB.render(g);
 
-        for (Coin thisCoin : alCoins)   // stage 5
+        for (Chest thisChest : alCoins)   // stage 5
         {
-            thisCoin.render(g, screenX, screenY);
+            thisChest.render(g, screenX, screenY);
         }
         g.setClip(0, 0, getWidth(), getHeight());   // reset clipping rect
 
@@ -192,12 +192,12 @@ public class GameComponent extends Component
             currentTime.setTime(System.currentTimeMillis());
             lastRenderedTime = System.currentTimeMillis();
 
-            Iterator<Coin> itr = alCoins.iterator();   // stage 5
+            Iterator<Chest> itr = alCoins.iterator();   // stage 5
             while (itr.hasNext())
             {
-                Coin thisCoin = itr.next();
-                thisCoin.animate();
-                if (Hero.collide(thisCoin))
+                Chest thisChest = itr.next();
+                thisChest.animate();
+                if (Hero.collide(thisChest))
                 {
                     itr.remove();
                     score += 10;

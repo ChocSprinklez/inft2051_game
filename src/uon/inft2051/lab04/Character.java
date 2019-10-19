@@ -429,10 +429,10 @@ public class Character
         }
     }
 
-    public boolean collide(Coin thisCoin)   // stage 5
+    public boolean collide(Chest thisChest)   // stage 5
     {
-        int distX = this.posX - thisCoin.getSceneX();
-        int distY = this.posY - thisCoin.getSceneY();
+        int distX = this.posX - thisChest.getSceneX();
+        int distY = this.posY - thisChest.getSceneY();
         double distance = Math.sqrt(distX * distX + distY * distY);
         return (distance < imageSize);
     }
