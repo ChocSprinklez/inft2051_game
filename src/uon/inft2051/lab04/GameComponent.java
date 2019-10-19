@@ -1,7 +1,9 @@
 package uon.inft2051.lab04;
 
+
 import com.codename1.ui.Graphics;
 import com.codename1.ui.Component;
+
 
 import java.util.Date;
 import java.util.ArrayList;
@@ -20,10 +22,14 @@ public class GameComponent extends Component
     Character Hero;
     TileMap tmScene;
     TileMap tmTop;
+    MoveCircle turnCircle;
     int screenX, screenY;
     ArrayList<Coin> alCoins;   // stage 5
     int lives, score, pauseCount;   // stage 5
     Image imHeart;
+    Turn PlayerTurn;
+    Image endTurn;
+    Button turnEnd;
 
     public void initComponent()
     {
@@ -48,6 +54,10 @@ public class GameComponent extends Component
         Hero = new Character(tmTop, "/5.png", 16, 0);
         Hero.setSprites(4, 7, 0, 3, 4, 0, 12, 15, 8, 11, 12, 8);
         Hero.initCharacter(16, 200, true);
+
+        turnCircle = new MoveCircle(Hero, tmScene, "/circlefile.png",16,5);
+
+        PlayerTurn = new Turn(Hero, turnCircle);
 
         isPressed = false;
 
@@ -81,6 +91,16 @@ public class GameComponent extends Component
         score = 0;
         pauseCount = 0;
         isPaused = false;
+
+
+        try
+        {
+            endTurn = Image.createImage("/x.png");
+        }catch (Exception exp)
+        {
+            endTurn = null;
+        }
+        turnEnd = new Button(endTurn, 64, 448,224);
     }
 
     public void paint(Graphics g)
@@ -104,15 +124,23 @@ public class GameComponent extends Component
             }
         }        // render the objects of the scene
         tmScene.render(g, screenX, screenY);
+        turnCircle.render(g, screenX, screenY);
         tmTop.render(g, screenX, screenY);
 
+
+
         Hero.render(g, screenX, screenY);
+
+        turnEnd.render(g);
 
         for (Coin thisCoin : alCoins)   // stage 5
         {
             thisCoin.render(g, screenX, screenY);
         }
         g.setClip(0, 0, getWidth(), getHeight());   // reset clipping rect
+
+
+
         for (int ndx = 0; ndx < lives; ndx++)   // stage 5
         {
             g.drawImage(imHeart, ndx * 34 + 5, 5);
@@ -121,6 +149,8 @@ public class GameComponent extends Component
         //g.drawString(sMessage + " : " + Hero.getSceneX(), 10, 10);
         g.drawString("Score: " + score + " : " + sMessage, 200, 10);
         g.drawString("PointerX: " + pointerX + " PointerY: " + pointerY,200,20);
+
+
     }
 
     public void pointerPressed(int pressX, int pressY)
@@ -133,6 +163,10 @@ public class GameComponent extends Component
     public void pointerReleased(int releaseX, int releaseY)
     {
         isPressed = false;
+        if (turnEnd.isClicked(releaseX,releaseY))
+        {
+            PlayerTurn.endTurn();
+        }
 
     }
 
@@ -189,13 +223,23 @@ public class GameComponent extends Component
                     pauseCount = -1;
                 }
             }
-            if (!Hero.jumping())
+            if (PlayerTurn.isTurn())
             {
-                if (isPressed) {
-                    Hero.walk(pointerX, pointerY);
+                if (isPressed)
+                {
+                    if (pointerX > getWidth() / 2)
+                    {
+                        Hero.walk(pointerX,pointerY);
+                    }
+                    else if (pointerX < getWidth() / 2)
+                    {
+                        Hero.walk(pointerX,pointerY);
+                    }
                 }
-                if (!isPressed)
+                else
+                {
                     Hero.standStill();
+                }
             }
             if (!Hero.checkBoundsX())   // stage 5
             {

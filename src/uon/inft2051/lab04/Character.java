@@ -51,6 +51,11 @@ public class Character
         return posX;
     }
 
+    public int getSceneY()
+    {
+        return posY;
+    }
+
     // define which sprites to use for which function
     public void setSprites(int minLeft, int maxLeft, int minRight, int maxRight, int stdLeft, int stdRight, int minUp, int maxUp, int minDown, int maxDown, int stdUp, int stdDown)
     {
@@ -320,33 +325,6 @@ public class Character
         }
     }
 
-    /*
-    public void startJump(int screenPress)
-    {
-        if (screenPress < posY && !isJumping)
-        {
-            isJumping = true;
-            speedY = 0.2 * (screenPress - posY);
-            if (speedY < -20)
-            {
-                speedY = -20;
-            }
-        }
-    }
-    */
-
-
-    /*public void vertMove()
-    {
-        posY += speedY;
-        speedY += gravity;
-        collideY();
-        if (isJumping)
-        {
-            posX += speedX;
-            collideX();
-        }
-    }*/
 
     public boolean jumping()
     {
