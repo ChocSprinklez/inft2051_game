@@ -30,6 +30,8 @@ public class GameComponent extends Component
     Turn PlayerTurn;
     Image endTurn;
     Button turnEnd;
+    Image attack;
+    Button attackB;
 
     public void initComponent()
     {
@@ -101,6 +103,14 @@ public class GameComponent extends Component
             endTurn = null;
         }
         turnEnd = new Button(endTurn, 64, 448,224);
+        try
+        {
+            attack = Image.createImage("/sword.png");
+        } catch (Exception exp)
+        {
+            attack = null;
+        }
+        attackB = new Button(attack, 64, 0, 224);
     }
 
     public void paint(Graphics g)
@@ -132,6 +142,7 @@ public class GameComponent extends Component
         Hero.render(g, screenX, screenY);
 
         turnEnd.render(g);
+        attackB.render(g);
 
         for (Coin thisCoin : alCoins)   // stage 5
         {
@@ -166,6 +177,10 @@ public class GameComponent extends Component
         if (turnEnd.isClicked(releaseX,releaseY))
         {
             PlayerTurn.endTurn();
+        }
+        if (attackB.isClicked(releaseX,releaseY))
+        {
+            PlayerTurn.startTurn();
         }
 
     }

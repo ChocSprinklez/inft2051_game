@@ -39,14 +39,14 @@ public class MoveCircle {
         for (int i = 0; i < arraySize; i++)
         {
             for (int j = 0; j < arraySize; j++) {
-                sqArrayX[i][j] = centerX - 5 * imageSize + i * imageSize;
-                sqArrayY[i][j] = centerY - 5 * imageSize + j * imageSize;
+                sqArrayX[i][j] = centerX - 5 * imageSize + (i+1) * imageSize;
+                sqArrayY[i][j] = centerY - 5 * imageSize + (j+1) * imageSize;
             }
         }
         for (int i = 0; i < arraySize; i++)
         {
             for (int j = 0; j < arraySize; j++) {
-                g.setClip(sqArrayX[i][j] - offsetX, sqArrayY[i][j], imageSize, imageSize);
+                g.setClip(sqArrayX[i][j] - offsetX, sqArrayY[i][j] - offsetY, imageSize, imageSize);
                 g.drawImage(square, sqArrayX[i][j] - offsetX, sqArrayY[i][j] - offsetY);
             }
         }
