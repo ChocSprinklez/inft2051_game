@@ -21,6 +21,7 @@ public class MoveCircle {
         this.tmTop = tmTop;
         centerX = Hero.getSceneX();
         centerY = Hero.getSceneY();
+        Hero.moveCircle(this);
         try
         {
             square = Image.createImage(fileName);
@@ -61,5 +62,13 @@ public class MoveCircle {
     {
         centerX = Hero.getSceneX();
         centerY = Hero.getSceneY();
+    }
+    public int[] getCenter()
+    {
+        int[] center = new int[3];
+        center[0] = centerX;
+        center[1] = centerY;
+        center[2] = circleSize;
+        return center;
     }
 }

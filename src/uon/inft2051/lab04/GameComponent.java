@@ -55,11 +55,6 @@ public class GameComponent extends Component
 
         Hero = new Character(tmTop, "/5.png", 16, 0);
         Hero.setSprites(4, 7, 0, 3, 4, 0, 12, 15, 8, 11, 12, 8);
-        Hero.initCharacter(16, 200, true);
-
-        turnCircle = new MoveCircle(Hero, tmScene, "/circlefile.png",16,5);
-
-        PlayerTurn = new Turn(Hero, turnCircle);
 
         isPressed = false;
 
@@ -79,8 +74,14 @@ public class GameComponent extends Component
                     Chest newCoin = new Chest("/little-treasure-chest.png", 16, 0, startX, startY);
                     alCoins.add(newCoin);
                 }
+                else if (name.equals("hero"))
+                {
+                    Hero.initCharacter(startX, startY, true);
+                }
             }
         }
+        turnCircle = new MoveCircle(Hero, tmScene, "/circlefile.png",16,5);
+        PlayerTurn = new Turn(Hero, turnCircle);
         try
         {
             // image from https://openclipart.org/detail/29043/heart
@@ -196,11 +197,13 @@ public class GameComponent extends Component
             while (itr.hasNext())
             {
                 Chest thisChest = itr.next();
-                thisChest.animate();
                 if (Hero.collide(thisChest))
                 {
-                    itr.remove();
-                    score += 10;
+                    if (!thisChest.isOpen())
+                    {
+                        score += 10;
+                    }
+                    thisChest.animate();
                 }
             }
 

@@ -24,6 +24,7 @@ public class Character
     private boolean isJumping;
     private TileMap tmScene;   // stage 4
     private char Zchar;   // stage 4
+    private MoveCircle circle;
 
     public Character(TileMap tmScene, String fileName, int size, int border)
     {
@@ -106,7 +107,7 @@ public class Character
                     }
                 }
                 posX += speedX;
-                collideX();
+                collideX(moveX);
             } else if (posX > (moveX + moveX/10)) {
                 if (speedX >= 0) {
                     speedX = minSpeedX;
@@ -117,7 +118,7 @@ public class Character
                     }
                 }
                 posX -= speedX;
-                collideX();
+                collideX(moveX);
             }
         }
         if (posY != moveY) {
@@ -131,7 +132,7 @@ public class Character
                     }
                 }
                 posY += speedY;
-                collideY();
+                collideY(moveY);
             } else if (posY > (moveY + moveY/10)) {
                 if (speedY >= 0) {
                     speedY = minSpeedY;
@@ -142,7 +143,7 @@ public class Character
                     }
                 }
                 posY -= speedY;
-                collideY();
+                collideY(moveY);
             }
         }
     }
@@ -341,13 +342,19 @@ public class Character
         g.drawImage(spriteSheet, renderX - offsetX, renderY - offsetY);
     }
 
-    public void collideX()
+    public void moveCircle(MoveCircle circle)
+    {
+        this.circle = circle;
+    }
+
+
+    public void collideX(int moveX)
     {
         char[] tileZ = {'Z', 'Z', 'Z', 'Z'};   // char array not string - has to be mutable
         int newX = posX;
         if (posX % imageSize != 0)   // overlap tiles in X direction
         {
-            if (speedX < 0)   // going left
+            if (moveX < posX)   // going left
             {
                 tileZ[0] = tmScene.posToTile(posX, posY).charAt(0);   // tile under top left corner
                 if (posY % imageSize != 0)   // overlap tiles in Y direction
@@ -356,7 +363,7 @@ public class Character
                 }
                 newX = (int) (posX / imageSize + 1) * imageSize;
             }
-            else if (speedX > 0)   // going right
+            else if (moveX > posX)   // going right
             {
                 tileZ[1] = tmScene.posToTile(posX + imageSize, posY).charAt(0);   // tile under top right corner
                 if (posY % imageSize != 0)   // overlap tiles in Y direction)
@@ -374,17 +381,28 @@ public class Character
                     break;
                 }
             }
+            int[] turnBorder;
+            turnBorder = circle.getCenter();
+            if (turnBorder[0] + (turnBorder[2]-1)*16 <= posX || turnBorder[0] - (turnBorder[2]-1)*16 >= posX)
+            {
+                if(moveX < posX)
+                    newX = (int) (posX / imageSize + 1)* imageSize;
+                else if (moveX > posX)
+                    newX = (int) (posX / imageSize)* imageSize;
+                posX = newX;
+                speedX = 0;
+            }
         }
     }
 
     // check for collision in Y direction, and correct
-    public void collideY()
+    public void collideY(int moveY)
     {
         char[] tileZ = {'Z', 'Z', 'Z', 'Z'};   // char array not string - has to be mutable
         int newY = posY;
         if (posY % imageSize != 0)   // overlap tiles in Y direction
         {
-            if (speedY < 0)   // going up
+            if (moveY < posY)   // going up
             {
                 tileZ[0] = tmScene.posToTile(posX, posY).charAt(0);   // tile under top left corner
                 if (posX % imageSize != 0)   // overlap tiles in X direction
@@ -393,7 +411,7 @@ public class Character
                 }
                 newY = (int) (posY / imageSize + 1) * imageSize;
             }
-            else if (speedY > 0)   // going down
+            else if (moveY > posY)   // going down
             {
                 tileZ[2] = tmScene.posToTile(posX, posY + imageSize).charAt(0);   // bottom left tile
                 if (posX % imageSize != 0)   // overlap tiles in X direction)
@@ -422,9 +440,16 @@ public class Character
                 isJumping = false;
                 Zchar = minZ;
             }
-            else if (isJumping && speedY > 0)   // no collision, jumping down
+            int[] turnBorder;
+            turnBorder = circle.getCenter();
+            if (turnBorder[1] + (turnBorder[2]-1)*16 <= posY || turnBorder[1] - (turnBorder[2]-1)*16 >= posY)
             {
-                Zchar = --minZ;
+                if(moveY < posY)
+                    newY = (int) (posY / imageSize + 1)* imageSize;
+                else if (moveY > posY)
+                    newY = (int) (posY / imageSize)* imageSize;
+                posY = newY;
+                speedY = 0;
             }
         }
     }

@@ -47,8 +47,16 @@ public class Chest
         spriteIndex++;
         if (spriteIndex >= spriteCols * spriteRows)
         {
-            spriteIndex = 0;
+            spriteIndex = 1;
         }
+    }
+    public boolean isOpen()
+    {
+        if (spriteIndex == 1)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void render(Graphics g, int offsetX, int offsetY)
