@@ -462,6 +462,14 @@ public class Character
         return (distance < imageSize);
     }
 
+    public boolean collide(Enemy thisEnemy)   // stage 5
+    {
+        int distX = this.posX - thisEnemy.getSceneX();
+        int distY = this.posY - thisEnemy.getSceneY();
+        double distance = Math.sqrt(distX * distX + distY * distY);
+        return (distance < imageSize);
+    }
+
     public boolean checkBoundsX()   // stage 5
     {
         boolean moveOK = true;

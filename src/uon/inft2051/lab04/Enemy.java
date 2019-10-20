@@ -97,7 +97,7 @@ public class Enemy
 
         walkAnim(moveX,moveY);
         if (posX != moveX) {
-            if (posX < (moveX - imageSize)) {
+            if (posX < (moveX - imageSize/2)) {
                 if (speedX <= 0) {
                     speedX = minSpeedX;
                 } else {
@@ -122,7 +122,7 @@ public class Enemy
             }
         }
         if (posY != moveY) {
-            if (posY < (moveY - imageSize)) {
+            if (posY < (moveY - imageSize/2)) {
                 if (speedY <= 0) {
                     speedY = minSpeedY;
                 } else {
@@ -391,6 +391,7 @@ public class Enemy
                     newX = (int) (posX / imageSize)* imageSize;
                 posX = newX;
                 speedX = 0;
+                return;
             }
         }
     }
@@ -450,6 +451,7 @@ public class Enemy
                     newY = (int) (posY / imageSize)* imageSize;
                 posY = newY;
                 speedY = 0;
+                return;
             }
         }
     }

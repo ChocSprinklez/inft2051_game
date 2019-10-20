@@ -89,7 +89,7 @@ public class GameComponent extends Component
                     newEnemy.setSprites(8,11,12,15,8,12,4,7,0,3,4,0);
                     newEnemy.initCharacter(startX,startY,true);
                     alEnemys.add(newEnemy);
-                    MoveCircle newCircle = new MoveCircle(newEnemy, tmScene, "/circlefile.png", 16, 5);
+                    MoveCircle newCircle = new MoveCircle(newEnemy, tmScene, "/circlefile.png", 16, 2);
                     enemyCircles.add(newCircle);
                 }
             }
@@ -99,7 +99,7 @@ public class GameComponent extends Component
         try
         {
             // image from https://openclipart.org/detail/29043/heart
-            imHeart = Image.createImage("/heart_32_trans.png");
+            imHeart = Image.createImage("/heart.png");
         }
         catch (Exception exp)
         {
@@ -167,7 +167,7 @@ public class GameComponent extends Component
 
         for (int ndx = 0; ndx < lives; ndx++)   // stage 5
         {
-            g.drawImage(imHeart, ndx * 34 + 5, 5);
+            g.drawImage(imHeart, ndx * 34 + 5, 0);
         }
         g.setColor(0xff0000);
         //g.drawString(sMessage + " : " + Hero.getSceneX(), 10, 10);
@@ -231,26 +231,13 @@ public class GameComponent extends Component
                     screenY = 0;
                     Hero.initCharacter(16, 200, true);
                     sMessage = "Be careful";
+                    lives = 3;
                     isPaused = false;
                     return true;
                 }
                 else
                 {
                     return false;
-                }
-            }
-
-            //Hero.vertMove();
-            if (!Hero.checkBoundsY())   // stage 5
-            {
-                isPaused = true;
-                pauseCount = 20;
-                sMessage = "Life lost";
-                lives--;
-                if (lives == 0)
-                {
-                    sMessage = "Game over";
-                    pauseCount = -1;
                 }
             }
             if (PlayerTurn.isTurn())
@@ -285,6 +272,17 @@ public class GameComponent extends Component
                         {
                             MoveCircle thisCircle = enemyCircleItr.next();
                             thisCircle.setCenter(thisEnemy);
+                        }
+                    }
+                    if (Hero.collide(thisEnemy))
+                    {
+                        lives--;
+                        sMessage = "Life lost";
+                        if (lives == 0)
+                        {
+                            isPaused = true;
+                            sMessage = "Game over";
+                            pauseCount = 20;
                         }
                     }
                 }
