@@ -25,6 +25,7 @@ public class Enemy
     private TileMap tmScene;   // stage 4
     private char Zchar;   // stage 4
     private MoveCircle circle;
+    private int attackDelay;
 
     public Enemy(TileMap tmScene, String fileName, int size, int border)
     {
@@ -57,6 +58,10 @@ public class Enemy
         return posY;
     }
 
+    public int getAttackDelay() {return attackDelay; }
+
+    public void setAttackDelay(int attackDelay) {this.attackDelay = attackDelay; }
+
     // define which sprites to use for which function
     public void setSprites(int minLeft, int maxLeft, int minRight, int maxRight, int stdLeft, int stdRight, int minUp, int maxUp, int minDown, int maxDown, int stdUp, int stdDown)
     {
@@ -80,6 +85,7 @@ public class Enemy
         this.posY = posY;
         speedX = 0;
         speedY = 0;
+        attackDelay = 0;
         if (isfacingRight)
         {
             spriteIndex = stdRight;

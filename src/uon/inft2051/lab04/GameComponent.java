@@ -29,6 +29,7 @@ public class GameComponent extends Component
     ArrayList<Enemy> alEnemys;
     ArrayList<MoveCircle> enemyCircles;
     int lives, score, pauseCount;   // stage 5
+    int invuln, enemyTurn;
     Image imHeart;
     Turn PlayerTurn;
     Image endTurn;
@@ -108,6 +109,8 @@ public class GameComponent extends Component
         score = 0;
         pauseCount = 0;
         isPaused = false;
+        invuln = 0;
+        enemyTurn = 0;
 
 
         try
@@ -189,11 +192,14 @@ public class GameComponent extends Component
         isPressed = false;
         if (turnEnd.isClicked(releaseX,releaseY))
         {
-            PlayerTurn.endTurn();
+            if (enemyTurn == 0) {
+                PlayerTurn.endTurn();
+                enemyTurn = 10;
+            }
         }
         if (attackB.isClicked(releaseX,releaseY))
         {
-            PlayerTurn.startTurn();
+
         }
 
     }
@@ -230,6 +236,7 @@ public class GameComponent extends Component
                     screenX = 0;
                     screenY = 0;
                     Hero.initCharacter(16, 200, true);
+                    PlayerTurn.startTurn();
                     sMessage = "Be careful";
                     lives = 3;
                     isPaused = false;
@@ -260,33 +267,42 @@ public class GameComponent extends Component
             }
             else if (!PlayerTurn.isTurn())
             {
-                Iterator<MoveCircle> enemyCircleItr = enemyCircles.iterator();
-                Iterator<Enemy> enemyItr = alEnemys.iterator();
-                while (enemyItr.hasNext())
-                {
-                    Enemy thisEnemy = enemyItr.next();
-                    thisEnemy.walk(Hero.getSceneX(),Hero.getSceneY());
-                    if (!PlayerTurn.isEnemyTurn())
-                    {
-                        if (enemyCircleItr.hasNext())
-                        {
-                            MoveCircle thisCircle = enemyCircleItr.next();
-                            thisCircle.setCenter(thisEnemy);
+                if (enemyTurn > 0) {
+                    Iterator<MoveCircle> enemyCircleItr = enemyCircles.iterator();
+                    Iterator<Enemy> enemyItr = alEnemys.iterator();
+                    while (enemyItr.hasNext()) {
+                        Enemy thisEnemy = enemyItr.next();
+                        thisEnemy.walk(Hero.getSceneX(), Hero.getSceneY());
+                        if (!PlayerTurn.isEnemyTurn()) {
+                            if (enemyCircleItr.hasNext()) {
+                                MoveCircle thisCircle = enemyCircleItr.next();
+                                thisCircle.setCenter(thisEnemy);
+                            }
+                        }
+                        if (Hero.collide(thisEnemy)) {
+                            if (thisEnemy.getAttackDelay() == 0) {
+                                lives--;
+                                thisEnemy.setAttackDelay(10);
+                                sMessage = "Life lost";
+                                if (lives == 0) {
+                                    isPaused = true;
+                                    sMessage = "Game over";
+                                    enemyTurn = 0;
+                                    pauseCount = 20;
+                                }
+                            }
+                        }
+                        if (thisEnemy.getAttackDelay() > 0) {
+                            thisEnemy.setAttackDelay(thisEnemy.getAttackDelay() - 1);
                         }
                     }
-                    if (Hero.collide(thisEnemy))
+                    PlayerTurn.enemyMove();
+                    enemyTurn--;
+                    if (enemyTurn == 0)
                     {
-                        lives--;
-                        sMessage = "Life lost";
-                        if (lives == 0)
-                        {
-                            isPaused = true;
-                            sMessage = "Game over";
-                            pauseCount = 20;
-                        }
+                        PlayerTurn.startTurn();
                     }
                 }
-                PlayerTurn.enemyMove();
             }
             if (!Hero.checkBoundsX())   // stage 5
             {

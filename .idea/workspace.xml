@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9188b192-5681-4978-bd8f-2d45944c99af" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/heart.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Versions.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Versions.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/built-jar.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/built-jar.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codenameone_settings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/codenameone_settings.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Character.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/GameComponent.java" afterDir="false" />
     </list>
@@ -177,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571547092091</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Enemies Do damage">
+      <created>1571551267354</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1571551267354</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -198,6 +199,7 @@
     <MESSAGE value="Chests working like coins" />
     <MESSAGE value="Collision is fixed" />
     <MESSAGE value="Enemies Added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Enemies Added" />
+    <MESSAGE value="Enemies Do damage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enemies Do damage" />
   </component>
 </project>
