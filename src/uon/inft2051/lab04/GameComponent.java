@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Iterator;   // stage 5
 
 import com.codename1.ui.Image;   // stage 5
+import com.codename1.ui.TextSelection;
 
 public class GameComponent extends Component
 {
@@ -25,6 +26,8 @@ public class GameComponent extends Component
     MoveCircle turnCircle;
     int screenX, screenY;
     ArrayList<Chest> alCoins;   // stage 5
+    ArrayList<Enemy> alEnemys;
+    ArrayList<MoveCircle> enemyCircles;
     int lives, score, pauseCount;   // stage 5
     Image imHeart;
     Turn PlayerTurn;
@@ -59,6 +62,8 @@ public class GameComponent extends Component
         isPressed = false;
 
         alCoins = new ArrayList<Chest>();   // stage 5
+        alEnemys = new ArrayList<Enemy>();
+        enemyCircles = new ArrayList<MoveCircle>();
         ArrayList<String> charSpecs = tmTop.getAnimats();
         for (String charSpec : charSpecs)
         {
@@ -77,6 +82,15 @@ public class GameComponent extends Component
                 else if (name.equals("hero"))
                 {
                     Hero.initCharacter(startX, startY, true);
+                }
+                else if (name.equals("enemy"))
+                {
+                    Enemy newEnemy = new Enemy(tmTop,"/monster1.png", 16, 0);
+                    newEnemy.setSprites(8,11,12,15,8,12,4,7,0,3,4,0);
+                    newEnemy.initCharacter(startX,startY,true);
+                    alEnemys.add(newEnemy);
+                    MoveCircle newCircle = new MoveCircle(newEnemy, tmScene, "/circlefile.png", 16, 5);
+                    enemyCircles.add(newCircle);
                 }
             }
         }
@@ -137,21 +151,19 @@ public class GameComponent extends Component
         tmScene.render(g, screenX, screenY);
         turnCircle.render(g, screenX, screenY);
         tmTop.render(g, screenX, screenY);
-
-
-
-        Hero.render(g, screenX, screenY);
-
-        turnEnd.render(g);
-        attackB.render(g);
-
         for (Chest thisChest : alCoins)   // stage 5
         {
             thisChest.render(g, screenX, screenY);
         }
+        for (Enemy thisEnemy : alEnemys)
+        {
+            thisEnemy.render(g, screenX, screenY);
+        }
+        Hero.render(g, screenX, screenY);
+        turnEnd.render(g);
+        attackB.render(g);
+
         g.setClip(0, 0, getWidth(), getHeight());   // reset clipping rect
-
-
 
         for (int ndx = 0; ndx < lives; ndx++)   // stage 5
         {
@@ -258,6 +270,25 @@ public class GameComponent extends Component
                 {
                     Hero.standStill();
                 }
+            }
+            else if (!PlayerTurn.isTurn())
+            {
+                Iterator<MoveCircle> enemyCircleItr = enemyCircles.iterator();
+                Iterator<Enemy> enemyItr = alEnemys.iterator();
+                while (enemyItr.hasNext())
+                {
+                    Enemy thisEnemy = enemyItr.next();
+                    thisEnemy.walk(Hero.getSceneX(),Hero.getSceneY());
+                    if (!PlayerTurn.isEnemyTurn())
+                    {
+                        if (enemyCircleItr.hasNext())
+                        {
+                            MoveCircle thisCircle = enemyCircleItr.next();
+                            thisCircle.setCenter(thisEnemy);
+                        }
+                    }
+                }
+                PlayerTurn.enemyMove();
             }
             if (!Hero.checkBoundsX())   // stage 5
             {

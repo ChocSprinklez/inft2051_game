@@ -6,7 +6,7 @@ import com.codename1.ui.Image;
 // running caveman sprite sheet from https://opengameart.org/content/running-caveman-spritesheet
 // edited by David Cornforth to apply right facing characters and transparent background
 
-public class Character
+public class Enemy
 {
     private final double minSpeedX = 4.0;
     private final double maxSpeedX = 8.0;
@@ -26,7 +26,7 @@ public class Character
     private char Zchar;   // stage 4
     private MoveCircle circle;
 
-    public Character(TileMap tmScene, String fileName, int size, int border)
+    public Enemy(TileMap tmScene, String fileName, int size, int border)
     {
         this.tmScene = tmScene;
         posX = 0;
@@ -335,9 +335,9 @@ public class Character
     public void render(Graphics g, int offsetX, int offsetY)
     {
         g.setClip(posX - offsetX, posY - offsetY, imageSize, imageSize);
-        int indexX = spriteIndex % spriteCols;
+        int indexX = spriteIndex / spriteCols;
         int renderX = posX - indexX * (imageSize + border);
-        int indexY = spriteIndex / spriteCols;
+        int indexY = spriteIndex % spriteCols;
         int renderY = posY - indexY * (imageSize + border);
         g.drawImage(spriteSheet, renderX - offsetX, renderY - offsetY);
     }

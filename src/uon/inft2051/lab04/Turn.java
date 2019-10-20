@@ -7,6 +7,7 @@ public class Turn {
     Character Char;
     MoveCircle circle;
     boolean turn = true;
+    boolean enemyTurn = false;
 
     private boolean isTurn;
     public Turn (Character Char, MoveCircle circle)
@@ -18,6 +19,15 @@ public class Turn {
     {
         return turn;
     }
+    public boolean isEnemyTurn()
+    {
+        return enemyTurn;
+    }
+    public void enemyMove()
+    {
+        enemyTurn = true;
+    }
+
     public void startTurn()
     {
         turn = true;
@@ -28,5 +38,6 @@ public class Turn {
     public void endTurn()
     {
         turn = false;
+        enemyTurn = false;
     }
 }

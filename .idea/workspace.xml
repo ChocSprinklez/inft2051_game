@@ -1,12 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9188b192-5681-4978-bd8f-2d45944c99af" name="Default Changelist" comment="">
+    <list default="true" id="9188b192-5681-4978-bd8f-2d45944c99af" name="Default Changelist" comment="Collision is fixed">
+      <change afterPath="$PROJECT_DIR$/src/monster1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monsters/monster1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Versions.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Versions.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/built-jar.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/built-jar.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Map1_Collision Layer.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map1_Collision Layer.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Chest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Chest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/GameComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/MoveCircle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/MoveCircle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Turn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Turn.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,14 +58,17 @@
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="ProjectId" id="1Owy78r9CbnF7wDUvqxfCaT85n6" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/uon/inft2051/lab04" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -156,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571462040303</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Collision is fixed">
+      <created>1571472556587</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1571472556587</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -171,9 +208,11 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="More Stuff" />
     <MESSAGE value="with start turn button" />
     <MESSAGE value="Chests working like coins" />
-    <option name="LAST_COMMIT_MESSAGE" value="Chests working like coins" />
+    <MESSAGE value="Collision is fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Collision is fixed" />
   </component>
 </project>

@@ -32,6 +32,22 @@ public class MoveCircle {
         imageSize = size;
         circleSize = radius;
     }
+    public MoveCircle(Enemy Enemy, TileMap tmTop, String fileName, int size, int radius)
+    {
+        this.tmTop = tmTop;
+        centerX = Enemy.getSceneX();
+        centerY = Enemy.getSceneY();
+        Enemy.moveCircle(this);
+        try
+        {
+            square = Image.createImage(fileName);
+        } catch (Exception exp)
+        {
+            square = null;
+        }
+        imageSize = size;
+        circleSize = radius;
+    }
     public void render(Graphics g, int offsetX, int offsetY)
     {
         int arraySize = circleSize*2 - 1;
@@ -62,6 +78,11 @@ public class MoveCircle {
     {
         centerX = Hero.getSceneX();
         centerY = Hero.getSceneY();
+    }
+    public void setCenter(Enemy Enemy)
+    {
+        centerX = Enemy.getSceneX();
+        centerY = Enemy.getSceneY();
     }
     public int[] getCenter()
     {
