@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Iterator;   // stage 5
 
 import com.codename1.ui.Image;   // stage 5
+import com.codename1.ui.Transform;
 
 
 public class GameComponent extends Component
@@ -36,6 +37,7 @@ public class GameComponent extends Component
     Image attack;
     Button attackB;
     Attack swordSwing;
+    float scaleImages;
 
     public void initComponent()
     {
@@ -45,19 +47,19 @@ public class GameComponent extends Component
         pointerX = 0;
         pointerY = 0;
 
-        tmScene = new TileMap(16);   // stage 3
+        tmScene = new TileMap(16, scaleImages);   // stage 3
         tmScene.loadScene("/Map1_Tile Layer.csv");   // stage 3
         tmScene.loadImages("/tileset.png", 0);
         screenX = 0;
         screenY = 0;
 
-        tmTop = new TileMap(16);   // stage 3
+        tmTop = new TileMap(16, scaleImages);   // stage 3
         tmTop.loadScene("/Map1_Collision Layer.csv");   // stage 3
         tmTop.loadImages("/tileset.png", 0);
         screenX = 0;
         screenY = 0;
 
-        Hero = new Character(tmTop, "/5.png", 16, 0);
+        Hero = new Character(tmTop, "/5.png", 16, 0, scaleImages);
         Hero.setSprites(4, 7, 0, 3, 4, 0, 12, 15, 8, 11, 12, 8);
 
         isPressed = false;
@@ -76,7 +78,7 @@ public class GameComponent extends Component
                 int startY = Integer.parseInt(tokens[2]);
                 if (name.equals("chest"))
                 {
-                    Chest newCoin = new Chest("/little-treasure-chest.png", 16, 0, startX, startY);
+                    Chest newCoin = new Chest("/little-treasure-chest.png", 16, 0, startX, startY, scaleImages);
                     alCoins.add(newCoin);
                 }
                 else if (name.equals("hero"))
@@ -85,20 +87,24 @@ public class GameComponent extends Component
                 }
                 else if (name.equals("enemy"))
                 {
-                    Enemy newEnemy = new Enemy(tmTop,"/monster1.png", 16, 0, 2);
+                    Enemy newEnemy = new Enemy(tmTop,"/monster1.png", 16, 0, 2, scaleImages);
                     newEnemy.setSprites(8,11,12,15,8,12,4,7,0,3,4,0);
                     newEnemy.initCharacter(startX,startY,true);
                     alEnemys.add(newEnemy);
                 }
             }
         }
-        swordSwing = new Attack("/att.png",32,0,Hero);
-        turnCircle = new MoveCircle(Hero, tmScene, "/circlefile.png",16,5);
+        swordSwing = new Attack("/att.png",32,0,Hero,scaleImages);
+        turnCircle = new MoveCircle(Hero, tmScene, "/circlefile.png",16,5,scaleImages);
         PlayerTurn = new Turn(Hero, turnCircle);
         try
         {
             // image from https://openclipart.org/detail/29043/heart
             imHeart = Image.createImage("/heart.png");
+            int x = (int)(64*scaleImages);
+            int y = (int)(64*scaleImages);
+            System.out.println("x = " + x + " y = " + y);
+            imHeart.scale(x,y);
         }
         catch (Exception exp)
         {
@@ -130,6 +136,13 @@ public class GameComponent extends Component
         attackB = new Button(attack, 64, 0, 224);
     }
 
+    public void setScaleImages (float scale)
+    {
+        float f = 512;
+        scaleImages = scale/f;
+        System.out.println("scale ratio: " + scaleImages);
+    }
+
     public void paint(Graphics g)
     {
         // calc position to render main char on viewport
@@ -157,14 +170,12 @@ public class GameComponent extends Component
 
         for (int ndx = 0; ndx < lives; ndx++)   // stage 5
         {
-            g.drawImage(imHeart, ndx * 34 + 5, 0);
+            g.drawImage(imHeart, (int)((ndx * 34 + 5)*scaleImages), 0);
         }
         g.setColor(0xff0000);
         //g.drawString(sMessage + " : " + Hero.getSceneX(), 10, 10);
         g.drawString("Score: " + score + " : " + sMessage, 200, 10);
         g.drawString("PointerX: " + pointerX + " PointerY: " + pointerY,200,20);
-
-
     }
 
     public void pointerPressed(int pressX, int pressY)

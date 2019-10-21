@@ -28,7 +28,7 @@ public class Enemy
     private int attackDelay;
     private int radius, borderX, borderY;
 
-    public Enemy(TileMap tmScene, String fileName, int size, int border, int radius)
+    public Enemy(TileMap tmScene, String fileName, int size, int border, int radius, float scale)
     {
         this.tmScene = tmScene;
         posX = 0;
@@ -41,8 +41,11 @@ public class Enemy
         {
             spriteSheet = null;
         }
-        imageSize = size;
-        this.border = border;
+        imageSize = (int)(size*scale);
+        int y = (int)(spriteSheet.getHeight()*scale);
+        int x = (int)(spriteSheet.getWidth()*scale);
+        spriteSheet.scale(x,y);
+        this.border = (int)(border*scale);
         spriteCols = spriteSheet.getWidth() / (imageSize + border);
         spriteRows = spriteSheet.getHeight() / (imageSize + border);
         spriteIndex = 0;
@@ -394,7 +397,7 @@ public class Enemy
                     break;
                 }
             }
-            if (borderX + (radius-1)*16 <= posX || borderX - (radius-1)*16 >= posX)
+            if (borderX + (radius-1)*imageSize <= posX || borderX - (radius-1)*imageSize >= posX)
             {
                 if(moveX < posX)
                     newX = (int) (posX / imageSize + 1)* imageSize;
@@ -452,7 +455,7 @@ public class Enemy
                 isJumping = false;
                 Zchar = minZ;
             }
-            if (borderY + radius*16 <= posY || borderY - (radius-1)*16 >= posY)
+            if (borderY + radius*imageSize <= posY || borderY - (radius-1)*imageSize >= posY)
             {
                 if(moveY < posY)
                     newY = (int) (posY / imageSize + 1)* imageSize;
@@ -470,7 +473,7 @@ public class Enemy
         int distX = this.posX - thisAttack.getSceneX();
         int distY = this.posY - thisAttack.getSceneY();
         double distance = Math.sqrt(distX * distX + distY * distY);
-        return (distance < imageSize);
+        return (distance < imageSize*2);
     }
 
     public boolean checkBoundsX()   // stage 5

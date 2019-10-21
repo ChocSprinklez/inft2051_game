@@ -12,7 +12,7 @@ public class Chest
     Image spriteSheet;
     int imageSize, border, spriteCols, spriteRows, spriteIndex;
 
-    public Chest(String fileName, int size, int border, int posX, int posY)
+    public Chest(String fileName, int size, int border, int posX, int posY, float scale)
     {
         try
         {
@@ -22,8 +22,11 @@ public class Chest
         {
             spriteSheet = null;
         }
-        imageSize = size;
-        this.border = border;
+        imageSize = (int)(size*scale);
+        int y = (int)(spriteSheet.getHeight()*scale);
+        int x = (int)(spriteSheet.getWidth()*scale);
+        spriteSheet.scale(x,y);
+        this.border = (int)(border*scale);
         spriteCols = spriteSheet.getWidth() / (imageSize + border);
         spriteRows = spriteSheet.getHeight() / (imageSize + border);
         spriteIndex = 0;

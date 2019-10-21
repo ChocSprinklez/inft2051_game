@@ -14,7 +14,7 @@ public class Attack
     boolean attack;
     int imageSize, border, spriteCols, spriteRows, spriteIndex;
 
-    public Attack(String fileName, int size, int border, Character Hero)
+    public Attack(String fileName, int size, int border, Character Hero, float scale)
     {
         try
         {
@@ -24,8 +24,11 @@ public class Attack
         {
             spriteSheet = null;
         }
-        imageSize = size;
-        this.border = border;
+        imageSize = (int)(size*scale);
+        int y = (int)(spriteSheet.getHeight()*scale);
+        int x = (int)(spriteSheet.getWidth()*scale);
+        spriteSheet.scale(x,y);
+        this.border = (int)(border*scale);
         spriteCols = spriteSheet.getWidth() / (imageSize + border);
         spriteRows = spriteSheet.getHeight() / (imageSize + border);
         spriteIndex = 4;

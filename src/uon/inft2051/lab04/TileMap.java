@@ -22,13 +22,14 @@ public class TileMap
 {
     String[][] tileNames;
     int tileSize, spriteCols, spriteRows, width, height, border;
+    float scale;
     Image spriteSheet;
     ArrayList<String> animats;
 
-    public TileMap(int tileSize)
+    public TileMap(int tileSize, float scale)
     {
         tileNames = null;
-        this.tileSize = tileSize;
+        this.tileSize = (int)(tileSize*scale);
         spriteCols = 0;
         spriteRows = 0;
         width = 0;
@@ -36,6 +37,7 @@ public class TileMap
         border = 0;
         spriteSheet = null;
         animats = new ArrayList<String>();
+        this.scale = scale;
     }
 
     public int getWidth()
@@ -115,7 +117,7 @@ public class TileMap
     // load sprite sheet for background scenery
     public void loadImages(String filename, int border)
     {
-        this.border = border;
+        this.border = (int)(border*scale);
         try
         {
             spriteSheet = Image.createImage(filename);
@@ -124,6 +126,9 @@ public class TileMap
         {
             spriteSheet = null;
         }
+        int y = (int)(spriteSheet.getHeight()*scale);
+        int x = (int)(spriteSheet.getWidth()*scale);
+        spriteSheet.scale(x,y);
         spriteCols = spriteSheet.getWidth() / (tileSize + border);
         spriteRows = spriteSheet.getHeight() / (tileSize + border);
     }

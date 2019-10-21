@@ -2,20 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9188b192-5681-4978-bd8f-2d45944c99af" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/att.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Attack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/caveman_trans.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generic_platformer_tiles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heart_32_trans.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/level001.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/level001top.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/map.tmx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scene01.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/star_coin_32t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Attack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Attack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Chest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Chest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/GameComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/MoveCircle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/MoveCircle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/TileMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/TileMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/inft2051_lab04.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/inft2051_lab04.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -199,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571557739409</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Enemies Die after being attacked">
+      <created>1571646735045</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1571646735046</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -222,6 +224,7 @@
     <MESSAGE value="Enemies Added" />
     <MESSAGE value="Enemies Do damage" />
     <MESSAGE value="Damage has delay" />
-    <option name="LAST_COMMIT_MESSAGE" value="Damage has delay" />
+    <MESSAGE value="Enemies Die after being attacked" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enemies Die after being attacked" />
   </component>
 </project>

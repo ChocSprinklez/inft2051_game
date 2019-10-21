@@ -16,7 +16,7 @@ public class MoveCircle {
 
 
 
-    public MoveCircle(Character Hero, TileMap tmTop, String fileName, int size, int radius)
+    public MoveCircle(Character Hero, TileMap tmTop, String fileName, int size, int radius, float scale)
     {
         this.tmTop = tmTop;
         centerX = Hero.getSceneX();
@@ -29,23 +29,10 @@ public class MoveCircle {
         {
             square = null;
         }
-        imageSize = size;
-        circleSize = radius;
-    }
-    public MoveCircle(Enemy Enemy, TileMap tmTop, String fileName, int size, int radius)
-    {
-        this.tmTop = tmTop;
-        centerX = Enemy.getSceneX();
-        centerY = Enemy.getSceneY();
-        Enemy.moveCircle(this);
-        try
-        {
-            square = Image.createImage(fileName);
-        } catch (Exception exp)
-        {
-            square = null;
-        }
-        imageSize = size;
+        imageSize = (int)(size*scale);
+        int y = (int)(square.getHeight()*scale);
+        int x = (int)(square.getWidth()*scale);
+        square.scale(x,y);
         circleSize = radius;
     }
     public void render(Graphics g, int offsetX, int offsetY)
@@ -56,8 +43,8 @@ public class MoveCircle {
         for (int i = 0; i < arraySize; i++)
         {
             for (int j = 0; j < arraySize; j++) {
-                sqArrayX[i][j] = centerX - 5 * imageSize + (i+1) * imageSize;
-                sqArrayY[i][j] = centerY - 5 * imageSize + (j+1) * imageSize;
+                sqArrayX[i][j] = centerX - circleSize * imageSize + (i+1) * imageSize;
+                sqArrayY[i][j] = centerY - circleSize * imageSize + (j+1) * imageSize;
             }
         }
         for (int i = 0; i < arraySize; i++)
@@ -78,11 +65,6 @@ public class MoveCircle {
     {
         centerX = Hero.getSceneX();
         centerY = Hero.getSceneY();
-    }
-    public void setCenter(Enemy Enemy)
-    {
-        centerX = Enemy.getSceneX();
-        centerY = Enemy.getSceneY();
     }
     public int[] getCenter()
     {

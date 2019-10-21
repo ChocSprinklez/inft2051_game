@@ -16,6 +16,12 @@ public class inft2051_lab04 {
     private Resources theme;
     private BorderLayout blMain;
 
+    private float calculateDPI() {
+        float pixels = (Display.getInstance().getDisplayWidth());
+        System.out.println("Height: " + Display.getInstance().getDisplayHeight() + " Width: " + Display.getInstance().getDisplayWidth());
+        return pixels;
+    }
+
     public void init(Object context)
     {
         theme = UIManager.initFirstTheme("/theme");
@@ -35,6 +41,7 @@ public class inft2051_lab04 {
         tb.setUIID("Container");
         tb.hideToolbar();
         GameComponent gc = new GameComponent();
+        gc.setScaleImages(calculateDPI());
         hi.add(BorderLayout.CENTER, gc);
         hi.show();
         hi.getComponentForm().registerAnimated(gc);

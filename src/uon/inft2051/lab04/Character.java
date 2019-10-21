@@ -8,11 +8,11 @@ import com.codename1.ui.Image;
 
 public class Character
 {
-    private final double minSpeedX = 4.0;
-    private final double maxSpeedX = 8.0;
-    private final double incSpeed = 0;
-    private final double minSpeedY = 4.0;
-    private final double maxSpeedY = 8.0;
+    private double minSpeedX = 4.0;
+    private double maxSpeedX = 8.0;
+    private double incSpeed = 0;
+    private double minSpeedY = 4.0;
+    private double maxSpeedY = 8.0;
     //final double gravity = 2.0;
 
     private int posX, posY;
@@ -26,7 +26,7 @@ public class Character
     private char Zchar;   // stage 4
     private MoveCircle circle;
 
-    public Character(TileMap tmScene, String fileName, int size, int border)
+    public Character(TileMap tmScene, String fileName, int size, int border, float scale)
     {
         this.tmScene = tmScene;
         posX = 0;
@@ -39,12 +39,17 @@ public class Character
         {
             spriteSheet = null;
         }
-        imageSize = size;
-        this.border = border;
+        imageSize = (int)(size*scale);
+        int y = (int)(spriteSheet.getHeight()*scale);
+        int x = (int)(spriteSheet.getWidth()*scale);
+        spriteSheet.scale(x,y);
+        this.border = (int)(border*scale);
         spriteCols = spriteSheet.getWidth() / (imageSize + border);
         spriteRows = spriteSheet.getHeight() / (imageSize + border);
         spriteIndex = 0;
         isJumping = false;
+        minSpeedX *= scale;
+        minSpeedY *= scale;
     }
 
     public int getSceneX()   // stage 3
@@ -390,7 +395,7 @@ public class Character
             }
             int[] turnBorder;
             turnBorder = circle.getCenter();
-            if (turnBorder[0] + (turnBorder[2]-1)*16 <= posX || turnBorder[0] - (turnBorder[2]-1)*16 >= posX)
+            if (turnBorder[0] + (turnBorder[2]-1)*imageSize <= posX || turnBorder[0] - (turnBorder[2]-1)*imageSize >= posX)
             {
                 if(moveX < posX)
                     newX = (int) (posX / imageSize + 1)* imageSize;
@@ -449,7 +454,7 @@ public class Character
             }
             int[] turnBorder;
             turnBorder = circle.getCenter();
-            if (turnBorder[1] + (turnBorder[2]-1)*16 <= posY || turnBorder[1] - (turnBorder[2]-1)*16 >= posY)
+            if (turnBorder[1] + (turnBorder[2]-1)*imageSize <= posY || turnBorder[1] - (turnBorder[2]-1)*imageSize >= posY)
             {
                 if(moveY < posY)
                     newY = (int) (posY / imageSize + 1)* imageSize;
