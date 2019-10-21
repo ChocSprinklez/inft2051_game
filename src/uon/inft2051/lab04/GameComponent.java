@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Iterator;   // stage 5
 
 import com.codename1.ui.Image;   // stage 5
-import com.codename1.ui.TextSelection;
+
 
 public class GameComponent extends Component
 {
@@ -27,7 +27,6 @@ public class GameComponent extends Component
     int screenX, screenY;
     ArrayList<Chest> alCoins;   // stage 5
     ArrayList<Enemy> alEnemys;
-    ArrayList<MoveCircle> enemyCircles;
     int lives, score, pauseCount;   // stage 5
     int invuln, enemyTurn;
     Image imHeart;
@@ -36,6 +35,7 @@ public class GameComponent extends Component
     Button turnEnd;
     Image attack;
     Button attackB;
+    Attack swordSwing;
 
     public void initComponent()
     {
@@ -64,7 +64,6 @@ public class GameComponent extends Component
 
         alCoins = new ArrayList<Chest>();   // stage 5
         alEnemys = new ArrayList<Enemy>();
-        enemyCircles = new ArrayList<MoveCircle>();
         ArrayList<String> charSpecs = tmTop.getAnimats();
         for (String charSpec : charSpecs)
         {
@@ -86,15 +85,14 @@ public class GameComponent extends Component
                 }
                 else if (name.equals("enemy"))
                 {
-                    Enemy newEnemy = new Enemy(tmTop,"/monster1.png", 16, 0);
+                    Enemy newEnemy = new Enemy(tmTop,"/monster1.png", 16, 0, 2);
                     newEnemy.setSprites(8,11,12,15,8,12,4,7,0,3,4,0);
                     newEnemy.initCharacter(startX,startY,true);
                     alEnemys.add(newEnemy);
-                    MoveCircle newCircle = new MoveCircle(newEnemy, tmScene, "/circlefile.png", 16, 2);
-                    enemyCircles.add(newCircle);
                 }
             }
         }
+        swordSwing = new Attack("/att.png",32,0,Hero);
         turnCircle = new MoveCircle(Hero, tmScene, "/circlefile.png",16,5);
         PlayerTurn = new Turn(Hero, turnCircle);
         try
@@ -104,6 +102,7 @@ public class GameComponent extends Component
         }
         catch (Exception exp)
         {
+            imHeart  = null;
         }
         lives = 3;
         score = 0;
@@ -134,23 +133,9 @@ public class GameComponent extends Component
     public void paint(Graphics g)
     {
         // calc position to render main char on viewport
-        int screenPosX = Hero.getSceneX() - screenX;   // stage 3
-        if (screenPosX > 0.6 * getWidth())
-        {
-            screenX = Hero.getSceneX() - (int) (0.6 * getWidth());
-            if (screenX > tmScene.getWidth() - getWidth())
-            {
-                screenX = tmScene.getWidth() - getWidth();
-            }
-        }
-        if (screenPosX < 0.4 * getWidth())
-        {
-            screenX = Hero.getSceneX() - (int) (0.4 * getWidth());
-            if (screenX < 0)
-            {
-                screenX = 0;
-            }
-        }        // render the objects of the scene
+        screenX = 0;
+
+             // render the objects of the scene
         tmScene.render(g, screenX, screenY);
         turnCircle.render(g, screenX, screenY);
         tmTop.render(g, screenX, screenY);
@@ -162,7 +147,9 @@ public class GameComponent extends Component
         {
             thisEnemy.render(g, screenX, screenY);
         }
+
         Hero.render(g, screenX, screenY);
+        swordSwing.render(g,screenX,screenY);
         turnEnd.render(g);
         attackB.render(g);
 
@@ -182,9 +169,12 @@ public class GameComponent extends Component
 
     public void pointerPressed(int pressX, int pressY)
     {
-        isPressed = true;
-        pointerX = pressX;
-        pointerY = pressY;
+
+        if (!(turnEnd.isClicked(pressX,pressY) || attackB.isClicked(pressX,pressY))) {
+            isPressed = true;
+            pointerX = pressX;
+            pointerY = pressY;
+        }
     }
 
     public void pointerReleased(int releaseX, int releaseY)
@@ -199,7 +189,7 @@ public class GameComponent extends Component
         }
         if (attackB.isClicked(releaseX,releaseY))
         {
-
+            swordSwing.doAttack(Hero);
         }
 
     }
@@ -211,14 +201,10 @@ public class GameComponent extends Component
             currentTime.setTime(System.currentTimeMillis());
             lastRenderedTime = System.currentTimeMillis();
 
-            Iterator<Chest> itr = alCoins.iterator();   // stage 5
-            while (itr.hasNext())
-            {
-                Chest thisChest = itr.next();
-                if (Hero.collide(thisChest))
-                {
-                    if (!thisChest.isOpen())
-                    {
+            // stage 5
+            for (Chest thisChest : alCoins) {
+                if (Hero.collide(thisChest)) {
+                    if (!thisChest.isOpen()) {
                         score += 10;
                     }
                     thisChest.animate();
@@ -247,6 +233,11 @@ public class GameComponent extends Component
                     return false;
                 }
             }
+            if (swordSwing.getAttack())
+            {
+                swordSwing.animate();
+            }
+
             if (PlayerTurn.isTurn())
             {
                 if (isPressed)
@@ -265,45 +256,44 @@ public class GameComponent extends Component
                     Hero.standStill();
                 }
             }
-            else if (!PlayerTurn.isTurn())
-            {
-                if (enemyTurn > 0) {
-                    Iterator<MoveCircle> enemyCircleItr = enemyCircles.iterator();
-                    Iterator<Enemy> enemyItr = alEnemys.iterator();
-                    while (enemyItr.hasNext()) {
-                        Enemy thisEnemy = enemyItr.next();
-                        thisEnemy.walk(Hero.getSceneX(), Hero.getSceneY());
-                        if (!PlayerTurn.isEnemyTurn()) {
-                            if (enemyCircleItr.hasNext()) {
-                                MoveCircle thisCircle = enemyCircleItr.next();
-                                thisCircle.setCenter(thisEnemy);
-                            }
-                        }
-                        if (Hero.collide(thisEnemy)) {
-                            if (thisEnemy.getAttackDelay() == 0) {
-                                lives--;
-                                thisEnemy.setAttackDelay(10);
-                                sMessage = "Life lost";
-                                if (lives == 0) {
-                                    isPaused = true;
-                                    sMessage = "Game over";
-                                    enemyTurn = 0;
-                                    pauseCount = 20;
-                                }
-                            }
-                        }
-                        if (thisEnemy.getAttackDelay() > 0) {
-                            thisEnemy.setAttackDelay(thisEnemy.getAttackDelay() - 1);
-                        }
-                    }
-                    PlayerTurn.enemyMove();
-                    enemyTurn--;
-                    if (enemyTurn == 0)
-                    {
-                        PlayerTurn.startTurn();
-                    }
+            for (Enemy thisEnemy : alEnemys) {
+                if (thisEnemy.collide(swordSwing) && swordSwing.attackActive()) {
+                    alEnemys.remove(thisEnemy);
+                    break;
                 }
             }
+            if (enemyTurn > 0) {
+                for (Enemy thisEnemy : alEnemys) {
+                    thisEnemy.walk(Hero.getSceneX(), Hero.getSceneY());
+                    if (!PlayerTurn.isEnemyTurn()) {
+                        //movearea reset
+                        thisEnemy.setCenter(thisEnemy.getSceneX(),thisEnemy.getSceneY());
+                    }
+                    if (Hero.collide(thisEnemy)) {
+                        if (thisEnemy.getAttackDelay() == 0) {
+                            lives--;
+                            thisEnemy.setAttackDelay(10);
+                            sMessage = "Life lost";
+                            if (lives == 0) {
+                                isPaused = true;
+                                sMessage = "Game over";
+                                enemyTurn = 0;
+                                pauseCount = 20;
+                            }
+                        }
+                    }
+                    if (thisEnemy.getAttackDelay() > 0) {
+                        thisEnemy.setAttackDelay(thisEnemy.getAttackDelay() - 1);
+                    }
+                }
+                PlayerTurn.enemyMove();
+                enemyTurn--;
+                if (enemyTurn == 0)
+                {
+                    PlayerTurn.startTurn();
+                }
+            }
+
             if (!Hero.checkBoundsX())   // stage 5
             {
                 isPaused = true;

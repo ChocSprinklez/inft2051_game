@@ -2,7 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9188b192-5681-4978-bd8f-2d45944c99af" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/att.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Attack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/caveman_trans.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generic_platformer_tiles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/heart_32_trans.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/level001.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/level001top.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/map.tmx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scene01.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/star_coin_32t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Character.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/GameComponent.java" afterDir="false" />
     </list>
@@ -44,6 +55,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Kiera\IdeaProjects\inft2051_lab04\src\uon\inft2051\lab04" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="uon.inft2051.lab04" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Kiera\IdeaProjects\inft2051_lab04\src" />
@@ -178,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571551267354</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Damage has delay">
+      <created>1571557739409</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1571557739409</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -200,6 +221,7 @@
     <MESSAGE value="Collision is fixed" />
     <MESSAGE value="Enemies Added" />
     <MESSAGE value="Enemies Do damage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Enemies Do damage" />
+    <MESSAGE value="Damage has delay" />
+    <option name="LAST_COMMIT_MESSAGE" value="Damage has delay" />
   </component>
 </project>

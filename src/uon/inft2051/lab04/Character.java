@@ -90,6 +90,18 @@ public class Character
         }
         Zchar = 'A';   // stage 4
     }
+    public int isFacing()
+    {
+        if (spriteIndex >= minUp || spriteIndex >= maxUp)
+            return 1;
+        else if (spriteIndex >= minDown || spriteIndex >= maxDown)
+            return 2;
+        else if (spriteIndex >= minLeft || spriteIndex >= maxLeft)
+            return 3;
+        else if (spriteIndex >= minRight || spriteIndex >= maxRight)
+            return 4;
+        return 0;
+    }
 
     public void walk(int pointerX, int pointerY) {
         int moveX = pointerX;
@@ -326,11 +338,6 @@ public class Character
         }
     }
 
-
-    public boolean jumping()
-    {
-        return isJumping;
-    }
 
     public void render(Graphics g, int offsetX, int offsetY)
     {

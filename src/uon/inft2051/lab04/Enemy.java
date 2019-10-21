@@ -26,8 +26,9 @@ public class Enemy
     private char Zchar;   // stage 4
     private MoveCircle circle;
     private int attackDelay;
+    private int radius, borderX, borderY;
 
-    public Enemy(TileMap tmScene, String fileName, int size, int border)
+    public Enemy(TileMap tmScene, String fileName, int size, int border, int radius)
     {
         this.tmScene = tmScene;
         posX = 0;
@@ -46,6 +47,7 @@ public class Enemy
         spriteRows = spriteSheet.getHeight() / (imageSize + border);
         spriteIndex = 0;
         isJumping = false;
+        this.radius = radius;
     }
 
     public int getSceneX()   // stage 3
@@ -95,6 +97,11 @@ public class Enemy
             spriteIndex = stdLeft;
         }
         Zchar = 'A';   // stage 4
+    }
+    public void setCenter(int x, int y)
+    {
+        borderX = x;
+        borderY = y;
     }
 
     public void walk(int pointerX, int pointerY) {
@@ -387,9 +394,7 @@ public class Enemy
                     break;
                 }
             }
-            int[] turnBorder;
-            turnBorder = circle.getCenter();
-            if (turnBorder[0] + (turnBorder[2]-1)*16 <= posX || turnBorder[0] - (turnBorder[2]-1)*16 >= posX)
+            if (borderX + (radius-1)*16 <= posX || borderX - (radius-1)*16 >= posX)
             {
                 if(moveX < posX)
                     newX = (int) (posX / imageSize + 1)* imageSize;
@@ -447,9 +452,7 @@ public class Enemy
                 isJumping = false;
                 Zchar = minZ;
             }
-            int[] turnBorder;
-            turnBorder = circle.getCenter();
-            if (turnBorder[1] + (turnBorder[2]-1)*16 <= posY || turnBorder[1] - (turnBorder[2]-1)*16 >= posY)
+            if (borderY + radius*16 <= posY || borderY - (radius-1)*16 >= posY)
             {
                 if(moveY < posY)
                     newY = (int) (posY / imageSize + 1)* imageSize;
@@ -462,10 +465,10 @@ public class Enemy
         }
     }
 
-    public boolean collide(Chest thisChest)   // stage 5
+    public boolean collide(Attack thisAttack)   // stage 5
     {
-        int distX = this.posX - thisChest.getSceneX();
-        int distY = this.posY - thisChest.getSceneY();
+        int distX = this.posX - thisAttack.getSceneX();
+        int distY = this.posY - thisAttack.getSceneY();
         double distance = Math.sqrt(distX * distX + distY * distY);
         return (distance < imageSize);
     }
