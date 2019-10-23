@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9188b192-5681-4978-bd8f-2d45944c99af" name="Default Changelist" comment="Buggy Scaling">
-      <change afterPath="$PROJECT_DIR$/src/doors.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/monster2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/monster3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/monsters/monster2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/monsters/monster3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Door.java" afterDir="false" />
+    <list default="true" id="9188b192-5681-4978-bd8f-2d45944c99af" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Map1_Collision Layer.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map1_Collision Layer.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Map2_Collision Layer.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map2_Collision Layer.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Map2_Tile Layer.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map2_Tile Layer.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Map3_Collision Layer.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map3_Collision Layer.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Map3_Tile Layer.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map3_Tile Layer.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/monsters/10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/monsters/3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Button.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Attack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Attack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Door.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/GameComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/inft2051_lab04.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/inft2051_lab04.java" afterDir="false" />
     </list>
@@ -217,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571658649270</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Door visually works, still needs to change the level.">
+      <created>1571813386110</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1571813386111</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -242,6 +237,7 @@
     <MESSAGE value="Damage has delay" />
     <MESSAGE value="Enemies Die after being attacked" />
     <MESSAGE value="Buggy Scaling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Buggy Scaling" />
+    <MESSAGE value="Door visually works, still needs to change the level." />
+    <option name="LAST_COMMIT_MESSAGE" value="Door visually works, still needs to change the level." />
   </component>
 </project>

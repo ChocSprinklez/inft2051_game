@@ -58,7 +58,7 @@ public class Attack
     }
     public boolean attackActive()
     {
-        if (spriteIndex == 4)
+        if (spriteIndex > 2)
         {
             return false;
         }

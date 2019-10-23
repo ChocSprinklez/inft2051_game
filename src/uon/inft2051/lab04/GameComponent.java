@@ -31,13 +31,14 @@ public class GameComponent extends Component
     Turn PlayerTurn;
     Image endTurn;
     Button turnEnd;
+
     Image attack;
     Button attackB;
     Attack swordSwing;
     float scaleImages;
     int levelNo = 1;
     int enemies = 0;
-    String loadSide = "";
+    String loadSide;
     boolean levelComplete = false;
 
     public void initComponent()
@@ -48,6 +49,16 @@ public class GameComponent extends Component
         pointerX = 0;
         pointerY = 0;
         levelComplete = false;
+        lives = 3;
+        score = 0;
+        pauseCount = 0;
+        isPaused = false;
+        invuln = 0;
+        enemyTurn = 0;
+    }
+
+    public void initialize(String load_side)
+    {
         String bottomMapFile = "/Map" + levelNo + "_Tile Layer.csv";
         String topMapFile = "/Map" + levelNo + "_Collision Layer.csv";
         String EnemyFile = "/monster" + levelNo + ".png";
@@ -113,17 +124,17 @@ public class GameComponent extends Component
                     Door newDoor = new Door("/doors.png",16,0, startX, startY, scaleImages,side, levelNo);
                     doorList.add(newDoor);
                 }
-                else if (name.equals("hero"))
-                {
-                    if (loadSide.equals("")) {
+                if (load_side.equals("")) {
+                    if (name.equals("hero")) {
                         Hero.initCharacter(startX, startY, true);
-                    } else
+                    }
+                } else
+                {
+                    for (Door thisDoor: doorList)
                     {
-                        for (Door thisDoor: doorList)
-                        {
-                            if (loadSide.equals(thisDoor.getSide())) {
-                                Hero.initCharacter(thisDoor.getSceneX(), thisDoor.getSceneY(), true);
-                            }
+                        if (thisDoor.getSide().equals(load_side)) {
+                            System.out.println("Starting at " + load_side);
+                            Hero.initCharacter(thisDoor.getSceneX(), thisDoor.getSceneY(), true);
                         }
                     }
                 }
@@ -145,12 +156,6 @@ public class GameComponent extends Component
         {
             imHeart  = null;
         }
-        lives = 3;
-        score = 0;
-        pauseCount = 0;
-        isPaused = false;
-        invuln = 0;
-        enemyTurn = 0;
 
 
         try
@@ -209,6 +214,27 @@ public class GameComponent extends Component
     public int getLevelNo()
     {
         return levelNo;
+    }
+
+    public void nextLevel()
+    {
+        String side = loadSide;
+        if (levelNo == 1)
+        {
+            System.out.println("Loading Level 2");
+            levelNo = 2;
+            initialize(side);
+        } else if (levelNo == 2)
+        {
+            System.out.println("Loading Level 3");
+            levelNo = 3;
+            initialize(side);
+        } else if (levelNo == 3)
+        {
+            System.out.println("Loading Level 1");
+            levelNo = 1;
+            initialize(side);
+        }
     }
 
     public void paint(Graphics g)
@@ -346,8 +372,11 @@ public class GameComponent extends Component
                     thisDoor.animate();
                     if (Hero.collide(thisDoor))
                     {
-                        loadSide = thisDoor.getSide();
+                        setLoadSide(thisDoor.getSide());
                         levelComplete = true;
+                        System.out.println("Level Complete");
+                        nextLevel();
+                        break;
                     }
                 }
             }

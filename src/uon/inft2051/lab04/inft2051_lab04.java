@@ -45,6 +45,8 @@ public class inft2051_lab04 {
     private void levelSelect(GameComponent gc, Form hi)
     {
         gc.setScaleImages(calculateDPI());
+        gc.setLevelNo(1);
+        gc.initialize("");
         hi.add(BorderLayout.CENTER, gc);
         hi.show();
         hi.getComponentForm().registerAnimated(gc);

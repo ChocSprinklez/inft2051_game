@@ -486,7 +486,7 @@ public class Character
         int distX = this.posX - thisDoor.getSceneX();
         int distY = this.posY - thisDoor.getSceneY();
         double distance = Math.sqrt(distX * distX + distY * distY);
-        return (distance < imageSize);
+        return (distance < (imageSize+1));
     }
 
     public boolean checkBoundsX()   // stage 5

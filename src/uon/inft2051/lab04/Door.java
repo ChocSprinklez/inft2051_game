@@ -15,6 +15,9 @@ public class Door
 
     public Door(String fileName, int size, int border, int posX, int posY, float scale, String side, int levelNo)
     {
+        this.posX = posX;
+        this.posY = posY;
+        this.side = side;
         try
         {
             spriteSheet = Image.createImage(fileName);
@@ -63,9 +66,6 @@ public class Door
         {
             spriteIndex = 16;
         }
-        this.posX = posX;
-        this.posY = posY;
-        this.side = side;
     }
 
     public int getSceneX()
