@@ -28,10 +28,8 @@ public class inft2051_lab04 {
         Toolbar.setGlobalToolbar(true);
     }
 
-    public void start()
-    {
-        if (current != null)
-        {
+    public void start() {
+        if (current != null) {
             current.show();
             return;
         }
@@ -41,6 +39,11 @@ public class inft2051_lab04 {
         tb.setUIID("Container");
         tb.hideToolbar();
         GameComponent gc = new GameComponent();
+        levelSelect(gc,hi);
+    }
+
+    private void levelSelect(GameComponent gc, Form hi)
+    {
         gc.setScaleImages(calculateDPI());
         hi.add(BorderLayout.CENTER, gc);
         hi.show();

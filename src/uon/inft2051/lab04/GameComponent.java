@@ -1,16 +1,12 @@
 package uon.inft2051.lab04;
 
 
-import com.codename1.ui.Graphics;
-import com.codename1.ui.Component;
+import com.codename1.ui.*;
 
 
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Iterator;   // stage 5
-
-import com.codename1.ui.Image;   // stage 5
-import com.codename1.ui.Transform;
 
 
 public class GameComponent extends Component
@@ -28,6 +24,7 @@ public class GameComponent extends Component
     int screenX, screenY;
     ArrayList<Chest> alCoins;   // stage 5
     ArrayList<Enemy> alEnemys;
+    ArrayList<Door> doorList;
     int lives, score, pauseCount;   // stage 5
     int invuln, enemyTurn;
     Image imHeart;
@@ -38,6 +35,10 @@ public class GameComponent extends Component
     Button attackB;
     Attack swordSwing;
     float scaleImages;
+    int levelNo = 1;
+    int enemies = 0;
+    String loadSide = "";
+    boolean levelComplete = false;
 
     public void initComponent()
     {
@@ -46,15 +47,19 @@ public class GameComponent extends Component
         lastRenderedTime = 0;
         pointerX = 0;
         pointerY = 0;
+        levelComplete = false;
+        String bottomMapFile = "/Map" + levelNo + "_Tile Layer.csv";
+        String topMapFile = "/Map" + levelNo + "_Collision Layer.csv";
+        String EnemyFile = "/monster" + levelNo + ".png";
 
         tmScene = new TileMap(16, scaleImages);   // stage 3
-        tmScene.loadScene("/Map1_Tile Layer.csv");   // stage 3
+        tmScene.loadScene(bottomMapFile);   // stage 3
         tmScene.loadImages("/tileset.png", 0);
         screenX = 0;
         screenY = 0;
 
         tmTop = new TileMap(16, scaleImages);   // stage 3
-        tmTop.loadScene("/Map1_Collision Layer.csv");   // stage 3
+        tmTop.loadScene(topMapFile);   // stage 3
         tmTop.loadImages("/tileset.png", 0);
         screenX = 0;
         screenY = 0;
@@ -66,6 +71,7 @@ public class GameComponent extends Component
 
         alCoins = new ArrayList<Chest>();   // stage 5
         alEnemys = new ArrayList<Enemy>();
+        doorList = new ArrayList<Door>();
         ArrayList<String> charSpecs = tmTop.getAnimats();
         for (String charSpec : charSpecs)
         {
@@ -81,16 +87,45 @@ public class GameComponent extends Component
                     Chest newCoin = new Chest("/little-treasure-chest.png", 16, 0, startX, startY, scaleImages);
                     alCoins.add(newCoin);
                 }
-                else if (name.equals("hero"))
-                {
-                    Hero.initCharacter(startX, startY, true);
-                }
                 else if (name.equals("enemy"))
                 {
-                    Enemy newEnemy = new Enemy(tmTop,"/monster1.png", 16, 0, 2, scaleImages);
+                    Enemy newEnemy = new Enemy(tmTop,EnemyFile, 16, 0, 2, scaleImages);
                     newEnemy.setSprites(8,11,12,15,8,12,4,7,0,3,4,0);
                     newEnemy.initCharacter(startX,startY,true);
                     alEnemys.add(newEnemy);
+                    enemies++;
+                }
+                else if (name.equals("doorT"))
+                {
+                    String side = "top";
+                    Door newDoor = new Door("/doors.png",16,0, startX, startY, scaleImages,side, levelNo);
+                    doorList.add(newDoor);
+                }
+                else if (name.equals("doorL"))
+                {
+                    String side = "left";
+                    Door newDoor = new Door("/doors.png",16,0, startX, startY, scaleImages,side, levelNo);
+                    doorList.add(newDoor);
+                }
+                else if (name.equals("doorR"))
+                {
+                    String side = "right";
+                    Door newDoor = new Door("/doors.png",16,0, startX, startY, scaleImages,side, levelNo);
+                    doorList.add(newDoor);
+                }
+                else if (name.equals("hero"))
+                {
+                    if (loadSide.equals("")) {
+                        Hero.initCharacter(startX, startY, true);
+                    } else
+                    {
+                        for (Door thisDoor: doorList)
+                        {
+                            if (loadSide.equals(thisDoor.getSide())) {
+                                Hero.initCharacter(thisDoor.getSceneX(), thisDoor.getSceneY(), true);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -121,19 +156,27 @@ public class GameComponent extends Component
         try
         {
             endTurn = Image.createImage("/x.png");
+            int x = (int)(64*scaleImages);
+            int y = (int)(64*scaleImages);
+            endTurn.scale(x,y);
         }catch (Exception exp)
         {
             endTurn = null;
         }
-        turnEnd = new Button(endTurn, 64, 448,224);
+
+        turnEnd = new Button(endTurn, (int)(64*scaleImages), (int)(Display.getInstance().getDisplayWidth() - (64*scaleImages)),(int)(Display.getInstance().getDisplayHeight() - (64*scaleImages)));
         try
         {
             attack = Image.createImage("/sword.png");
+            int x = (int)(64*scaleImages);
+            int y = (int)(64*scaleImages);
+            attack.scale(x,y);
         } catch (Exception exp)
         {
             attack = null;
         }
-        attackB = new Button(attack, 64, 0, 224);
+
+        attackB = new Button(attack, (int)(64*scaleImages), (int)(0*scaleImages), (int)(Display.getInstance().getDisplayHeight() - (64*scaleImages)));
     }
 
     public void setScaleImages (float scale)
@@ -141,6 +184,31 @@ public class GameComponent extends Component
         float f = 512;
         scaleImages = scale/f;
         System.out.println("scale ratio: " + scaleImages);
+    }
+
+    public void setLevelNo(int level)
+    {
+        levelNo = level;
+    }
+    public void setLoadSide(String side)
+    {
+        loadSide = side;
+    }
+
+    public boolean getLevelComplete()
+    {
+        return levelComplete;
+    }
+
+    public String getLoadSide()
+    {
+        return loadSide;
+    }
+
+
+    public int getLevelNo()
+    {
+        return levelNo;
     }
 
     public void paint(Graphics g)
@@ -159,6 +227,10 @@ public class GameComponent extends Component
         for (Enemy thisEnemy : alEnemys)
         {
             thisEnemy.render(g, screenX, screenY);
+        }
+        for (Door thisDoor: doorList)
+        {
+            thisDoor.render(g,screenX,screenY);
         }
 
         Hero.render(g, screenX, screenY);
@@ -267,9 +339,22 @@ public class GameComponent extends Component
                     Hero.standStill();
                 }
             }
+            if (enemies == 0)
+            {
+                for (Door thisDoor : doorList)
+                {
+                    thisDoor.animate();
+                    if (Hero.collide(thisDoor))
+                    {
+                        loadSide = thisDoor.getSide();
+                        levelComplete = true;
+                    }
+                }
+            }
             for (Enemy thisEnemy : alEnemys) {
                 if (thisEnemy.collide(swordSwing) && swordSwing.attackActive()) {
                     alEnemys.remove(thisEnemy);
+                    enemies--;
                     break;
                 }
             }

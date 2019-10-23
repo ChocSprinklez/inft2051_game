@@ -26,7 +26,7 @@ public class Button {
 
     public boolean isClicked(int relX, int relY)
     {
-        if (relX >= posX && relX <= posX + imageSize && relY >= posY && relY <= posY + imageSize)
+        if (relX >= posX + (imageSize/4) && relX <= posX + imageSize - (imageSize/4) && relY >= posY+ (imageSize/4) && relY <= posY + imageSize - (imageSize/4))
         {
             return true;
         }

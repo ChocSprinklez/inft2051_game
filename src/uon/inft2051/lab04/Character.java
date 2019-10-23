@@ -481,6 +481,13 @@ public class Character
         double distance = Math.sqrt(distX * distX + distY * distY);
         return (distance < imageSize);
     }
+    public boolean collide(Door thisDoor)   // stage 5
+    {
+        int distX = this.posX - thisDoor.getSceneX();
+        int distY = this.posY - thisDoor.getSceneY();
+        double distance = Math.sqrt(distX * distX + distY * distY);
+        return (distance < imageSize);
+    }
 
     public boolean checkBoundsX()   // stage 5
     {
