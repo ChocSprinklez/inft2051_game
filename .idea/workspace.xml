@@ -2,10 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9188b192-5681-4978-bd8f-2d45944c99af" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/theme-2.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Attack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Attack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Door.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/20.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/21.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/22.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/monster1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/monster2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/monsters/monster3.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/GameComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/inft2051_lab04.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/inft2051_lab04.java" afterDir="false" />
     </list>
@@ -212,7 +232,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571813386111</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Level Changing implemented">
+      <created>1571828661369</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1571828661370</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -238,6 +265,8 @@
     <MESSAGE value="Enemies Die after being attacked" />
     <MESSAGE value="Buggy Scaling" />
     <MESSAGE value="Door visually works, still needs to change the level." />
-    <option name="LAST_COMMIT_MESSAGE" value="Door visually works, still needs to change the level." />
+    <MESSAGE value="Level Changing implemented" />
+    <MESSAGE value="BACKGROUND MUSIC!" />
+    <option name="LAST_COMMIT_MESSAGE" value="BACKGROUND MUSIC!" />
   </component>
 </project>

@@ -1,9 +1,12 @@
 package uon.inft2051.lab04;
 
 
+import com.codename1.media.Media;
+import com.codename1.media.MediaManager;
 import com.codename1.ui.*;
 
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Iterator;   // stage 5
@@ -31,6 +34,7 @@ public class GameComponent extends Component
     Turn PlayerTurn;
     Image endTurn;
     Button turnEnd;
+    Media backgroundMusic;
 
     Image attack;
     Button attackB;
@@ -55,6 +59,16 @@ public class GameComponent extends Component
         isPaused = false;
         invuln = 0;
         enemyTurn = 0;
+        String f = "jar://theme-2.mp3";
+        try
+        {
+            backgroundMusic = MediaManager.createBackgroundMedia(f);
+            backgroundMusic.play();
+        }
+        catch (IOException err)
+        {
+            System.out.println("Music not playing");
+        }
     }
 
     public void initialize(String load_side)
@@ -309,6 +323,13 @@ public class GameComponent extends Component
         {
             currentTime.setTime(System.currentTimeMillis());
             lastRenderedTime = System.currentTimeMillis();
+
+            if (!backgroundMusic.isPlaying())
+            {
+                backgroundMusic.pause();
+                backgroundMusic.setTime(0);
+                backgroundMusic.play();
+            }
 
             // stage 5
             for (Chest thisChest : alCoins) {
