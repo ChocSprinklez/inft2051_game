@@ -58,7 +58,7 @@ public class Attack
     }
     public boolean attackActive()
     {
-        if (spriteIndex > 2)
+        if (spriteIndex > 1)
         {
             return false;
         }
@@ -72,17 +72,17 @@ public class Attack
     public void doAttack(Character Hero)
     {
         if (Hero.isFacing() == 1) {
-            this.posX = Hero.getSceneX() - (imageSize - 16)/2;
+            this.posX = Hero.getSceneX() - (imageSize - imageSize/2)/2;
             this.posY = Hero.getSceneY() - imageSize;
         } else if (Hero.isFacing() == 2) {
-            this.posX = Hero.getSceneX() - (imageSize - 16)/2;
-            this.posY = Hero.getSceneY() + (imageSize - 16);
+            this.posX = Hero.getSceneX() - (imageSize - imageSize/2)/2;
+            this.posY = Hero.getSceneY() + (imageSize - imageSize/2);
         } else if (Hero.isFacing() == 3) {
             this.posX = Hero.getSceneX() - imageSize;
-            this.posY = Hero.getSceneY() - (imageSize - 16)/2;
+            this.posY = Hero.getSceneY() - (imageSize - imageSize/2)/2;
         } else if (Hero.isFacing() == 4) {
-            this.posX = Hero.getSceneX() + (imageSize - 16);
-            this.posY = Hero.getSceneY() - (imageSize - 16)/2;
+            this.posX = Hero.getSceneX() + (imageSize - imageSize/2);
+            this.posY = Hero.getSceneY() - (imageSize - imageSize/2)/2;
         }
         attack = true;
         spriteIndex = 0;

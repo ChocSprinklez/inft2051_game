@@ -2,18 +2,49 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9188b192-5681-4978-bd8f-2d45944c99af" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/alert.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chest.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/click.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/enemy.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/game over.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kill.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/menu close.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/menu.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/success.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sword.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/com/codename1/sensors/SensorListener.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/com/codename1/sensors/SensorsManager$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/com/codename1/sensors/SensorsManager$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/com/codename1/sensors/SensorsManager$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/com/codename1/sensors/SensorsManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/com/codename1/sensors/SensorsNative.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/com/codename1/sensors/SensorsNativeImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/uon/inft2051/lab04/Attack.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/uon/inft2051/lab04/Button.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/uon/inft2051/lab04/Character.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/uon/inft2051/lab04/Chest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/uon/inft2051/lab04/Door.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/uon/inft2051/lab04/Enemy.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/uon/inft2051/lab04/MoveCircle.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/uon/inft2051/lab04/TileMap.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/CN1Sensors.cn1lib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/CN1Sensors.ver" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/impl/cls/com/codename1/sensors/SensorListener.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/impl/cls/com/codename1/sensors/SensorsManager$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/impl/cls/com/codename1/sensors/SensorsManager$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/impl/cls/com/codename1/sensors/SensorsManager$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/impl/cls/com/codename1/sensors/SensorsManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/impl/cls/com/codename1/sensors/SensorsNative.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/impl/native/android/com/codename1/sensors/SensorsNativeImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/impl/native/ios/com_codename1_sensors_SensorsNativeImpl.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/impl/native/ios/com_codename1_sensors_SensorsNativeImpl.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/impl/native/j2me/com/codename1/sensors/SensorsNativeImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/impl/native/javase/com/codename1/sensors/SensorsNativeImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/impl/native/rim/com/codename1/sensors/SensorsNativeImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/impl/native/win/com/codename1/sensors/SensorsNativeImpl.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Item.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/SensorsManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaSE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/JavaSE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Versions.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Versions.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/built-jar.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/built-jar.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/CodenameOne.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CodenameOne.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/CodenameOne_SRC.zip" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CodenameOne_SRC.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Attack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Attack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/GameComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/MoveCircle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/MoveCircle.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,7 +79,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -75,53 +106,6 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
-      <module name="inft2051_game" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
-      <module name="inft2051_game" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Run in Device Simulator" type="#com.codename1.plugin.intellij.run.CodenameOneConfigurationType" factoryName="Codename One" temporary="true">
       <setting name="mainClass" value="uon.inft2051.lab04.inft2051_lab04" />
       <setting name="vmparams" value="" />
@@ -232,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571888824255</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="SOUND EFFECTS!">
+      <created>1571914264224</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1571914264224</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -240,7 +231,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -260,6 +253,7 @@
     <MESSAGE value="Door visually works, still needs to change the level." />
     <MESSAGE value="Level Changing implemented" />
     <MESSAGE value="BACKGROUND MUSIC!" />
-    <option name="LAST_COMMIT_MESSAGE" value="BACKGROUND MUSIC!" />
+    <MESSAGE value="SOUND EFFECTS!" />
+    <option name="LAST_COMMIT_MESSAGE" value="SOUND EFFECTS!" />
   </component>
 </project>

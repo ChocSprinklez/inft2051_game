@@ -26,7 +26,7 @@ public class Enemy
     private char Zchar;   // stage 4
     private MoveCircle circle;
     private int attackDelay;
-    private int radius, borderX, borderY;
+    private int radius, borderX, borderY, health;
 
     public Enemy(TileMap tmScene, String fileName, int size, int border, int radius, float scale)
     {
@@ -51,6 +51,7 @@ public class Enemy
         spriteIndex = 0;
         isJumping = false;
         this.radius = radius;
+        health = 3;
     }
 
     public int getSceneX()   // stage 3
@@ -64,6 +65,16 @@ public class Enemy
     }
 
     public int getAttackDelay() {return attackDelay; }
+
+    public int getHealth() { return health; }
+
+    public void takeDamage() {
+        if (health > 0)
+        {
+            health--;
+            System.out.println("Enemy Health: "+ health);
+        }
+    }
 
     public void setAttackDelay(int attackDelay) {this.attackDelay = attackDelay; }
 

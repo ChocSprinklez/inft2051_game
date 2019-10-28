@@ -35,16 +35,6 @@ public class GameComponent extends Component
     Image endTurn;
     Button turnEnd;
     Media backgroundMusic, sword, success, menu, enemy, game_over, click, chest, alert, kill, menu_close;
-    /*
-            success = MediaManager.createBackgroundMedia("jar://success.mp3");
-            menu = MediaManager.createBackgroundMedia("jar://menu.mp3");
-            enemy = MediaManager.createBackgroundMedia("jar://enemy.mp3");
-            game_over = MediaManager.createBackgroundMedia("jar://game over.mp3");
-            click = MediaManager.createBackgroundMedia("jar://click.mp3")
-            alert = MediaManager.createBackgroundMedia("jar://alert.mp3");
-            kill = MediaManager.createBackgroundMedia("jar://kill.mp3");
-            menu_close = MediaManager.createBackgroundMedia("jar://menu close.mp3");
-     */
 
     Image attack;
     Button attackB;
@@ -63,7 +53,7 @@ public class GameComponent extends Component
         pointerX = 0;
         pointerY = 0;
         levelComplete = false;
-        lives = 3;
+        lives = 5;
         score = 0;
         pauseCount = 0;
         isPaused = false;
@@ -199,7 +189,7 @@ public class GameComponent extends Component
                 }
                 else if (name.equals("enemy"))
                 {
-                    Enemy newEnemy = new Enemy(tmTop,EnemyFile, 16, 0, 2, scaleImages);
+                    Enemy newEnemy = new Enemy(tmTop,EnemyFile, 16, 0, 4, scaleImages);
                     newEnemy.setSprites(8,11,12,15,8,12,4,7,0,3,4,0);
                     newEnemy.initCharacter(startX,startY,true);
                     alEnemys.add(newEnemy);
@@ -332,8 +322,10 @@ public class GameComponent extends Component
         }
         g.setColor(0xff0000);
         //g.drawString(sMessage + " : " + Hero.getSceneX(), 10, 10);
-        g.drawString("Score: " + score + " : " + sMessage, 200, 10);
-        g.drawString("PointerX: " + pointerX + " PointerY: " + pointerY,200,20);
+        Font ft = Font.createSystemFont(Font.FACE_PROPORTIONAL, Font.STYLE_PLAIN, Font.SIZE_LARGE);
+        g.setFont(ft);
+        g.drawString("Score: " + score + " : " + sMessage, (int)((200)*scaleImages), 10);
+        g.drawString("PointerX: " + pointerX + " PointerY: " + pointerY,(int)((200)*scaleImages),(int)((20)*scaleImages));
     }
 
     public void pointerPressed(int pressX, int pressY)
@@ -415,7 +407,7 @@ public class GameComponent extends Component
                     enemyTurn = 0;
                     PlayerTurn.startTurn();
                     sMessage = "Be careful";
-                    lives = 3;
+                    lives = 5;
                     isPaused = false;
                     return true;
                 }
@@ -427,15 +419,7 @@ public class GameComponent extends Component
             if (swordSwing.getAttack())
             {
                 swordSwing.animate();
-                if (attackSound == 0) {
-                    try {
-                        sword = MediaManager.createBackgroundMedia("jar://sword.mp3");
-                        sword.play();
-                    } catch (Exception err) {
-                        System.out.println("could not load sound sword");
-                    }
-                    attackSound++;
-                }
+
             } else {
                 attackSound = 0;
             }
@@ -481,6 +465,7 @@ public class GameComponent extends Component
                     {
                         setLoadSide(thisDoor.getSide());
                         backgroundMusic.setVolume(0);
+                        backgroundMusic.pause();
                         levelComplete = true;
                         System.out.println("Level Complete");
                         nextLevel();
@@ -490,19 +475,30 @@ public class GameComponent extends Component
             }
             for (Enemy thisEnemy : alEnemys) {
                 if (thisEnemy.collide(swordSwing) && swordSwing.attackActive()) {
-                    alEnemys.remove(thisEnemy);
-                    enemies--;
-                    try {
-                        kill = MediaManager.createBackgroundMedia("jar://kill.mp3");
-                        kill.play();
-                    } catch (Exception err) {
-                        System.out.println("could not load sound sword");
+                    thisEnemy.takeDamage();
+                    if (attackSound == 0) {
+                        try {
+                            sword = MediaManager.createBackgroundMedia("jar://sword.mp3");
+                            sword.play();
+                        } catch (Exception err) {
+                            System.out.println("could not load sound sword");
+                        }
+                        attackSound++;
                     }
-                    if (enemies == 0)
-                    {
-                        win = 1;
+                    if (thisEnemy.getHealth() == 0) {
+                        alEnemys.remove(thisEnemy);
+                        enemies--;
+                        try {
+                            kill = MediaManager.createBackgroundMedia("jar://kill.mp3");
+                            kill.play();
+                        } catch (Exception err) {
+                            System.out.println("could not load sound kill");
+                        }
+                        if (enemies == 0) {
+                            win = 1;
+                        }
+                        break;
                     }
-                    break;
                 }
             }
             if (lives == 1)

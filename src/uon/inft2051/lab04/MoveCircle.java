@@ -1,6 +1,5 @@
 package uon.inft2051.lab04;
 
-import java.awt.*;
 
 import com.codename1.maps.Tile;
 import com.codename1.ui.Graphics;
