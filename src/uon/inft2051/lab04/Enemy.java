@@ -68,10 +68,10 @@ public class Enemy
 
     public int getHealth() { return health; }
 
-    public void takeDamage() {
+    public void takeDamage(int damage) {
         if (health > 0)
         {
-            health--;
+            health -= damage;
             System.out.println("Enemy Health: "+ health);
         }
     }

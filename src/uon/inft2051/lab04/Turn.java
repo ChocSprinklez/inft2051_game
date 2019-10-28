@@ -35,6 +35,14 @@ public class Turn {
         circle.setCenter(Char);
     }
 
+    public void attack () {
+        attackUsed = true;
+    }
+
+    public boolean getAttackUsed () {
+        return attackUsed;
+    }
+
     public void endTurn()
     {
         turn = false;

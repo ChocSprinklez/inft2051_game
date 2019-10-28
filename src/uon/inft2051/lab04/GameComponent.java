@@ -1,6 +1,6 @@
 package uon.inft2051.lab04;
 
-
+import Weapons.Weapon_ShortSword;
 import com.codename1.media.Media;
 import com.codename1.media.MediaManager;
 import com.codename1.ui.*;
@@ -36,6 +36,7 @@ public class GameComponent extends Component
     Button turnEnd;
     Media backgroundMusic, sword, success, menu, enemy, game_over, click, chest, alert, kill, menu_close;
     boolean soundLoaded = false;
+
     Image attack;
     Button attackB;
     Attack swordSwing;
@@ -44,6 +45,15 @@ public class GameComponent extends Component
     int enemies = 0;
     String loadSide;
     boolean levelComplete = false;
+
+    Player player = new Player();
+    private SensorsManager sm;
+    Image heal;
+    Button healB;
+    Image evasionPotion;
+    Button evasionPotionB;
+    Image strengthPotion;
+    Button strengthPotionB;
 
     public void initComponent()
     {
@@ -59,6 +69,8 @@ public class GameComponent extends Component
         isPaused = false;
         invuln = 0;
         enemyTurn = 0;
+
+        defaultSetup();
     }
 
     public void initialize(String load_side)
@@ -128,6 +140,39 @@ public class GameComponent extends Component
         }
 
         attackB = new Button(attack, (int)(64*scaleImages), (int)(0*scaleImages), (int)(Display.getInstance().getDisplayHeight() - (64*scaleImages)));
+        try {
+            heal = Image.createImage("/potionHealth.png");
+            int x = (int) (64 * scaleImages);
+            int y = (int) (64 * scaleImages);
+            heal.scale(x, y);
+        } catch (Exception exp) {
+            heal = null;
+        }
+
+        healB = new Button(heal, (int) (64 * scaleImages), (int) (226 * scaleImages), (int) (Display.getInstance().getDisplayHeight() - (64 * scaleImages)));
+
+        try {
+            evasionPotion = Image.createImage("/potionEvasion.png");
+            int x = (int) (64 * scaleImages);
+            int y = (int) (64 * scaleImages);
+            evasionPotion.scale(x, y);
+        } catch (Exception exp) {
+            evasionPotion = null;
+        }
+
+        evasionPotionB = new Button(evasionPotion, (int) (64 * scaleImages), (int) (310 * scaleImages), (int) (Display.getInstance().getDisplayHeight() - (64 * scaleImages)));
+
+        try {
+            strengthPotion = Image.createImage("/potionStrength.png");
+            int x = (int) (64 * scaleImages);
+            int y = (int) (64 * scaleImages);
+            strengthPotion.scale(x, y);
+        } catch (Exception exp) {
+            strengthPotion = null;
+        }
+
+        strengthPotionB = new Button(strengthPotion, (int) (64 * scaleImages), (int) (390 * scaleImages), (int) (Display.getInstance().getDisplayHeight() - (64 * scaleImages)));
+
         if (!soundLoaded)
             loadMusic();
 
@@ -169,9 +214,16 @@ public class GameComponent extends Component
     public void setAlert() {
         try {
             alert = MediaManager.createBackgroundMedia("jar://alert.mp3");
-            System.out.println("alert.mp3");
         } catch (Exception err) {
             System.out.println("could not load sound alert");
+        }
+    }
+
+    public void setMenu_close() {
+        try {
+            menu_close = MediaManager.createBackgroundMedia("jar://menu close.mp3");
+        } catch (Exception err) {
+            System.out.println("could not load sound menu close");
         }
     }
 
@@ -323,6 +375,10 @@ public class GameComponent extends Component
         turnEnd.render(g);
         attackB.render(g);
 
+        healB.render(g);
+        evasionPotionB.render(g);
+        strengthPotionB.render(g);
+
         g.setClip(0, 0, getWidth(), getHeight());   // reset clipping rect
 
         for (int ndx = 0; ndx < lives; ndx++)   // stage 5
@@ -335,12 +391,22 @@ public class GameComponent extends Component
         g.setFont(ft);
         g.drawString("Score: " + score + " : " + sMessage, (int)((200)*scaleImages), 10);
         g.drawString("PointerX: " + pointerX + " PointerY: " + pointerY,(int)((200)*scaleImages),(int)((20)*scaleImages));
+
+        g.setColor(0xffffff);
+        g.drawString("Health", (int) (252 * scaleImages), (int) (Display.getInstance().getDisplayHeight() - (35 * scaleImages)));
+        g.drawString("x" + player.numHealthPotions, (int) (258 * scaleImages), (int) (Display.getInstance().getDisplayHeight() - (29 * scaleImages)));
+
+        g.drawString("Evasion", (int) (334 * scaleImages), (int) (Display.getInstance().getDisplayHeight() - (35 * scaleImages)));
+        g.drawString("x" + player.numEvasionPotions, (int) (342 * scaleImages), (int) (Display.getInstance().getDisplayHeight() - (29 * scaleImages)));
+
+        g.drawString("Strength", (int) (413 * scaleImages), (int) (Display.getInstance().getDisplayHeight() - (35 * scaleImages)));
+        g.drawString("x" + player.numStrengthPotions, (int) (422 * scaleImages), (int) (Display.getInstance().getDisplayHeight() - (29 * scaleImages)));
     }
 
     public void pointerPressed(int pressX, int pressY)
     {
 
-        if (!(turnEnd.isClicked(pressX,pressY) || attackB.isClicked(pressX,pressY))) {
+        if (!(turnEnd.isClicked(pressX,pressY) || attackB.isClicked(pressX,pressY) || healB.isClicked(pressX, pressY) || evasionPotionB.isClicked(pressX, pressY) || strengthPotionB.isClicked(pressX, pressY))) {
             isPressed = true;
             pointerX = pressX;
             pointerY = pressY;
@@ -366,14 +432,74 @@ public class GameComponent extends Component
         }
         if (attackB.isClicked(releaseX,releaseY))
         {
-            swordSwing.doAttack(Hero);
-            try {
-                click = MediaManager.createBackgroundMedia("jar://menu.mp3");
-            } catch (Exception err) {
-                System.out.println("could not load sound click");
+            if (!PlayerTurn.attackUsed) {
+                swordSwing.doAttack(Hero);
+                try {
+                    click = MediaManager.createBackgroundMedia("jar://menu.mp3");
+                } catch (Exception err) {
+                    System.out.println("could not load sound click");
+                }
+                click.setTime(0);
+                click.play();
             }
-            click.setTime(0);
-            click.play();
+            else {
+                setMenu_close();
+                menu_close.play();
+            }
+        }
+
+        if (healB.isClicked(releaseX, releaseY)) {
+            if (lives < 5 && player.numHealthPotions > 0) {
+                lives++;
+                player.numHealthPotions--;
+                try {
+                    click = MediaManager.createBackgroundMedia("jar://menu.mp3");
+                } catch (Exception err) {
+                    System.out.println("could not load sound click");
+                }
+                click.setTime(0);
+                click.play();
+            }
+            else {
+                setMenu_close();
+                menu_close.play();
+            }
+        }
+
+        if (evasionPotionB.isClicked(releaseX, releaseY)) {
+            if (player.numEvasionPotions > 0) {
+                player.dodgeChance += 0.25;
+                player.numEvasionPotions--;
+                try {
+                    click = MediaManager.createBackgroundMedia("jar://menu.mp3");
+                } catch (Exception err) {
+                    System.out.println("could not load sound click");
+                }
+                click.setTime(0);
+                click.play();
+            }
+            else {
+                setMenu_close();
+                menu_close.play();
+            }
+        }
+
+        if (strengthPotionB.isClicked(releaseX, releaseY)) {
+            if (player.numStrengthPotions > 0) {
+                player.currentWeapon.maxDamage += 3;
+                player.numStrengthPotions--;
+                try {
+                    click = MediaManager.createBackgroundMedia("jar://menu.mp3");
+                } catch (Exception err) {
+                    System.out.println("could not load sound click");
+                }
+                click.setTime(0);
+                click.play();
+            }
+            else {
+                setMenu_close();
+                menu_close.play();
+            }
         }
 
     }
@@ -504,7 +630,8 @@ public class GameComponent extends Component
             }
             for (Enemy thisEnemy : alEnemys) {
                 if (thisEnemy.collide(swordSwing) && swordSwing.attackActive()) {
-                    thisEnemy.takeDamage();
+                    thisEnemy.takeDamage(player.attack());
+                    PlayerTurn.attack();
                     if (attackSound == 0) {
                         try {
                             sword = MediaManager.createBackgroundMedia("jar://sword.mp3");
@@ -514,7 +641,7 @@ public class GameComponent extends Component
                         }
                         attackSound++;
                     }
-                    if (thisEnemy.getHealth() == 0) {
+                    if (thisEnemy.getHealth() <= 0) {
                         alEnemys.remove(thisEnemy);
                         enemies--;
                         try {
@@ -607,5 +734,9 @@ public class GameComponent extends Component
             return true;
         }
         return false;
+    }
+    public void defaultSetup() {
+        player.currentWeapon = new Weapon_ShortSword();
+        player.numHealthPotions = 2;
     }
 }
