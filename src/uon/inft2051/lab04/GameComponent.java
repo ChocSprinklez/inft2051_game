@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Iterator;   // stage 5
+import java.util.Random;
 
 
 public class GameComponent extends Component
@@ -28,6 +29,7 @@ public class GameComponent extends Component
     ArrayList<Chest> alCoins;   // stage 5
     ArrayList<Enemy> alEnemys;
     ArrayList<Door> doorList;
+    ArrayList<Item> alItems;
     int lives, score, pauseCount, win;   // stage 5
     int invuln, enemyTurn, attackSound = 0;
     Image imHeart;
@@ -36,6 +38,7 @@ public class GameComponent extends Component
     Button turnEnd;
     Media backgroundMusic, sword, success, menu, enemy, game_over, click, chest, alert, kill, menu_close;
     boolean soundLoaded = false;
+    int moveSize = 5;
 
     Image attack;
     Button attackB;
@@ -99,7 +102,7 @@ public class GameComponent extends Component
 
         setupLevel(load_side);
         swordSwing = new Attack("/att.png",32,0,Hero,scaleImages);
-        turnCircle = new MoveCircle(Hero, tmScene, "/circlefile.png",16,5,scaleImages);
+        turnCircle = new MoveCircle(Hero, tmScene, "/circlefile.png",16,moveSize,scaleImages);
         PlayerTurn = new Turn(Hero, turnCircle);
         try
         {
@@ -231,6 +234,7 @@ public class GameComponent extends Component
     {
         String EnemyFile = "/monster" + levelNo + ".png";
         alCoins = new ArrayList<Chest>();   // stage 5
+        alItems = new ArrayList<Item>();
         alEnemys = new ArrayList<Enemy>();
         doorList = new ArrayList<Door>();
         ArrayList<String> charSpecs = tmTop.getAnimats();
@@ -245,7 +249,9 @@ public class GameComponent extends Component
                 int startY = Integer.parseInt(tokens[2]);
                 if (name.equals("chest"))
                 {
-                    Chest newCoin = new Chest("/little-treasure-chest.png", 16, 0, startX, startY, scaleImages);
+                    Item newItem = new Item("/items.png",16,0,startX,startY,scaleImages);
+                    alItems.add(newItem);
+                    Chest newCoin = new Chest("/little-treasure-chest.png", 16, 0, startX, startY, scaleImages, newItem);
                     alCoins.add(newCoin);
                 }
                 else if (name.equals("enemy"))
@@ -396,7 +402,7 @@ public class GameComponent extends Component
         g.drawString("Health", (int) (252 * scaleImages), (int) (Display.getInstance().getDisplayHeight() - (35 * scaleImages)));
         g.drawString("x" + player.numHealthPotions, (int) (258 * scaleImages), (int) (Display.getInstance().getDisplayHeight() - (29 * scaleImages)));
 
-        g.drawString("Evasion", (int) (334 * scaleImages), (int) (Display.getInstance().getDisplayHeight() - (35 * scaleImages)));
+        g.drawString("Speed", (int) (334 * scaleImages), (int) (Display.getInstance().getDisplayHeight() - (35 * scaleImages)));
         g.drawString("x" + player.numEvasionPotions, (int) (342 * scaleImages), (int) (Display.getInstance().getDisplayHeight() - (29 * scaleImages)));
 
         g.drawString("Strength", (int) (413 * scaleImages), (int) (Display.getInstance().getDisplayHeight() - (35 * scaleImages)));
@@ -428,6 +434,43 @@ public class GameComponent extends Component
                 }
                 click.setTime(0);
                 click.play();
+            }
+        }
+        for (Item thisItem : alItems)
+        {
+            if (thisItem.isClicked(releaseX,releaseY))
+            {
+                if (thisItem.getSprite() == 1 && player.numHealthPotions < 5) {
+                    thisItem.setSprite(0);
+                    player.addHealthPotion();
+                    try {
+                        click = MediaManager.createBackgroundMedia("jar://menu.mp3");
+                    } catch (Exception err) {
+                        System.out.println("could not load sound click");
+                    }
+                    click.setTime(0);
+                    click.play();
+                } else if (thisItem.getSprite() == 3 && player.numEvasionPotions < 5) {
+                    thisItem.setSprite(0);
+                    player.addEvasionPotion();
+                    try {
+                        click = MediaManager.createBackgroundMedia("jar://menu.mp3");
+                    } catch (Exception err) {
+                        System.out.println("could not load sound click");
+                    }
+                    click.setTime(0);
+                    click.play();
+                } else if (thisItem.getSprite() == 2 && player.numStrengthPotions < 5) {
+                    thisItem.setSprite(0);
+                    player.addStrengthPotion();
+                    try {
+                        click = MediaManager.createBackgroundMedia("jar://menu.mp3");
+                    } catch (Exception err) {
+                        System.out.println("could not load sound click");
+                    }
+                    click.setTime(0);
+                    click.play();
+                }
             }
         }
         if (attackB.isClicked(releaseX,releaseY))
@@ -468,7 +511,9 @@ public class GameComponent extends Component
 
         if (evasionPotionB.isClicked(releaseX, releaseY)) {
             if (player.numEvasionPotions > 0) {
-                player.dodgeChance += 0.25;
+                //player.dodgeChance += 0.25;
+                turnCircle.changeSize(turnCircle.circleSize += 1);
+                moveSize++;
                 player.numEvasionPotions--;
                 try {
                     click = MediaManager.createBackgroundMedia("jar://menu.mp3");
@@ -641,20 +686,20 @@ public class GameComponent extends Component
                         }
                         attackSound++;
                     }
-                    if (thisEnemy.getHealth() <= 0) {
-                        alEnemys.remove(thisEnemy);
-                        enemies--;
-                        try {
-                            kill = MediaManager.createBackgroundMedia("jar://kill.mp3");
-                            kill.play();
-                        } catch (Exception err) {
-                            System.out.println("could not load sound kill");
-                        }
-                        if (enemies == 0) {
-                            win = 1;
-                        }
-                        break;
+                }
+                if (thisEnemy.getHealth() <= 0) {
+                    alEnemys.remove(thisEnemy);
+                    enemies--;
+                    try {
+                        kill = MediaManager.createBackgroundMedia("jar://kill.mp3");
+                        kill.play();
+                    } catch (Exception err) {
+                        System.out.println("could not load sound kill");
                     }
+                    if (enemies == 0) {
+                        win = 1;
+                    }
+                    break;
                 }
             }
             if (lives == 1)
@@ -719,7 +764,7 @@ public class GameComponent extends Component
                 }
                 PlayerTurn.enemyMove();
                 enemyTurn--;
-                if (enemyTurn == 0)
+                if (enemyTurn <= 0)
                 {
                     PlayerTurn.startTurn();
                 }

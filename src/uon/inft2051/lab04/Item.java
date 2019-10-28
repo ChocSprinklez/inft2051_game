@@ -45,18 +45,24 @@ public class Item
     }
 
     // sprite chosen for specific item
-    public void animate(int sprite)
+    public void setSprite(int sprite)
     {
         spriteIndex = sprite;
     }
 
     public boolean isClicked(int relX, int relY)
     {
-        if (relX >= posX + (imageSize/4) && relX <= posX + imageSize - (imageSize/4) && relY >= posY+ (imageSize/4) && relY <= posY + imageSize - (imageSize/4))
-        {
-            return true;
+        if (spriteIndex != 0) {
+            if (relX >= posX + (imageSize/4) && relX <= posX + imageSize - (imageSize/4) && relY >= posY+ (imageSize/4) && relY <= posY + imageSize - (imageSize/4))
+            {
+                return true;
+            }
         }
         return false;
+    }
+
+    public int getSprite() {
+        return spriteIndex;
     }
 
     public void render(Graphics g, int offsetX, int offsetY)

@@ -3,6 +3,8 @@ package uon.inft2051.lab04;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.Image;
 
+import java.util.Random;
+
 // by D. Cornforth April 2019
 // coin sprites from https://opengameart.org/content/coin-animation
 
@@ -10,9 +12,10 @@ public class Chest
 {
     int posX, posY;
     Image spriteSheet;
-    int imageSize, border, spriteCols, spriteRows, spriteIndex;
+    int imageSize, border, spriteCols, spriteRows, spriteIndex, itemSprite;
+    Item item;
 
-    public Chest(String fileName, int size, int border, int posX, int posY, float scale)
+    public Chest(String fileName, int size, int border, int posX, int posY, float scale, Item item)
     {
         try
         {
@@ -32,6 +35,9 @@ public class Chest
         spriteIndex = 0;
         this.posX = posX;
         this.posY = posY;
+        this.item = item;
+        Random RAND = new Random();
+        itemSprite = RAND.nextInt(3)+1;
     }
 
     public int getSceneX()
@@ -48,6 +54,7 @@ public class Chest
     public void animate()
     {
         spriteIndex++;
+        item.setSprite(itemSprite);
         if (spriteIndex >= spriteCols * spriteRows)
         {
             spriteIndex = 1;
@@ -70,5 +77,6 @@ public class Chest
         int indexY = spriteIndex / spriteCols;
         int renderY = posY - indexY * (imageSize + border);
         g.drawImage(spriteSheet, renderX - offsetX, renderY - offsetY);
+        item.render(g,offsetX,offsetY);
     }
 }
