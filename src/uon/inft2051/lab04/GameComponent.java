@@ -35,7 +35,7 @@ public class GameComponent extends Component
     Image endTurn;
     Button turnEnd;
     Media backgroundMusic, sword, success, menu, enemy, game_over, click, chest, alert, kill, menu_close;
-
+    boolean soundLoaded = false;
     Image attack;
     Button attackB;
     Attack swordSwing;
@@ -59,7 +59,6 @@ public class GameComponent extends Component
         isPaused = false;
         invuln = 0;
         enemyTurn = 0;
-
     }
 
     public void initialize(String load_side)
@@ -129,40 +128,50 @@ public class GameComponent extends Component
         }
 
         attackB = new Button(attack, (int)(64*scaleImages), (int)(0*scaleImages), (int)(Display.getInstance().getDisplayHeight() - (64*scaleImages)));
-        try {
-            enemy = MediaManager.createBackgroundMedia("jar://enemy.mp3");
-        } catch (Exception err) {
-            System.out.println("could not load sound enemy");
-        }
-        try {
-            game_over = MediaManager.createBackgroundMedia("jar://game over.mp3");
-        } catch (Exception err) {
-            System.out.println("could not load sound game over");
-        }
-        try {
-            click = MediaManager.createBackgroundMedia("jar://menu.mp3");
-        } catch (Exception err) {
-            System.out.println("could not load sound click");
-        }
-        try {
-            success = MediaManager.createBackgroundMedia("jar://success.mp3");
-        } catch (Exception err) {
-            System.out.println("could not load sound success");
-        }
-        try {
-            alert = MediaManager.createBackgroundMedia("jar://alert.mp3");
-        } catch (Exception err) {
-            System.out.println("could not load sound alert");
-        }
+        if (!soundLoaded)
+            loadMusic();
+
+    }
+
+    public void loadMusic() {
         try
         {
             backgroundMusic = MediaManager.createBackgroundMedia("jar://theme-2.mp3");
+            System.out.println("background music");
             backgroundMusic.play();
             backgroundMusic.setVolume(20);
         }
         catch (IOException err)
         {
             System.out.println("Music not playing");
+        }
+        soundLoaded = true;
+    }
+
+    public void setGame_over() {
+        try {
+            game_over = MediaManager.createBackgroundMedia("jar://game over.mp3");
+            System.out.println("game over.mp3");
+        } catch (Exception err) {
+            System.out.println("could not load sound game over");
+        }
+    }
+
+    public void setSuccess() {
+        try {
+            success = MediaManager.createBackgroundMedia("jar://success.mp3");
+            System.out.println("success.mp3");
+        } catch (Exception err) {
+            System.out.println("could not load sound success");
+        }
+    }
+
+    public void setAlert() {
+        try {
+            alert = MediaManager.createBackgroundMedia("jar://alert.mp3");
+            System.out.println("alert.mp3");
+        } catch (Exception err) {
+            System.out.println("could not load sound alert");
         }
     }
 
@@ -346,6 +355,11 @@ public class GameComponent extends Component
             if (enemyTurn == 0) {
                 PlayerTurn.endTurn();
                 enemyTurn = 10;
+                try {
+                    click = MediaManager.createBackgroundMedia("jar://menu.mp3");
+                } catch (Exception err) {
+                    System.out.println("could not load sound click");
+                }
                 click.setTime(0);
                 click.play();
             }
@@ -353,6 +367,11 @@ public class GameComponent extends Component
         if (attackB.isClicked(releaseX,releaseY))
         {
             swordSwing.doAttack(Hero);
+            try {
+                click = MediaManager.createBackgroundMedia("jar://menu.mp3");
+            } catch (Exception err) {
+                System.out.println("could not load sound click");
+            }
             click.setTime(0);
             click.play();
         }
@@ -447,17 +466,27 @@ public class GameComponent extends Component
                 for (Door thisDoor : doorList)
                 {
 
-                    if (!success.isPlaying() && win == 1) {
-                        success.setTime(0);
-                        success.play();
-                        win = 0;
-                    }
-                    else {
-                        backgroundMusic.setVolume(0);
-                    }
-                    if (!success.isPlaying())
+                    try {
+                        if (!success.isPlaying() && win == 1) {
+                            setSuccess();
+                            success.setTime(0);
+                            success.play();
+                            win = 0;
+                        }
+                        else {
+                            backgroundMusic.setVolume(0);
+                        }
+                        if (!success.isPlaying())
+                        {
+                            backgroundMusic.setVolume(20);
+                        }
+                    } catch (Exception exp)
                     {
-                        backgroundMusic.setVolume(20);
+                        if (win == 1) {
+                            setSuccess();
+                            success.play();
+                            win = 0;
+                        }
                     }
 
                     thisDoor.animate();
@@ -503,17 +532,37 @@ public class GameComponent extends Component
             }
             if (lives == 1)
             {
-                if (!alert.isPlaying()) {
-                    alert.setTime(0);
+                try {
+                    if (!alert.isPlaying()) {
+                        setAlert();
+                        alert.setTime(0);
+                        alert.play();
+                    }
+                }
+                catch (Exception exp)
+                {
+                    setAlert();
                     alert.play();
                 }
+
             }
             if (enemyTurn > 0) {
+                int playsound = 0;
                 for (Enemy thisEnemy : alEnemys) {
                     thisEnemy.walk(Hero.getSceneX(), Hero.getSceneY());
-                    if (enemyTurn % 9 == 0)
+
+                    if (enemyTurn == 9)
                     {
-                        enemy.setTime(0);
+                        if (playsound > 0)
+                        {
+                            break;
+                        }
+                        playsound++;
+                        try {
+                            enemy = MediaManager.createBackgroundMedia("jar://enemy.mp3");
+                        } catch (Exception err) {
+                            System.out.println("could not load sound enemy");
+                        }
                         enemy.play();
                     }
                     if (!PlayerTurn.isEnemyTurn()) {
@@ -527,6 +576,7 @@ public class GameComponent extends Component
                             sMessage = "Life lost";
                             if (lives == 0) {
                                 backgroundMusic.setVolume(0);
+                                setGame_over();
                                 game_over.setTime(0);
                                 game_over.play();
                                 isPaused = true;

@@ -2,49 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9188b192-5681-4978-bd8f-2d45944c99af" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/build/classes/com/codename1/sensors/SensorListener.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/com/codename1/sensors/SensorsManager$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/com/codename1/sensors/SensorsManager$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/com/codename1/sensors/SensorsManager$3.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/com/codename1/sensors/SensorsManager.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/com/codename1/sensors/SensorsNative.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/com/codename1/sensors/SensorsNativeImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/tmp/uon/inft2051/lab04/Attack.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/tmp/uon/inft2051/lab04/Button.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/tmp/uon/inft2051/lab04/Character.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/tmp/uon/inft2051/lab04/Chest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/tmp/uon/inft2051/lab04/Door.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/tmp/uon/inft2051/lab04/Enemy.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/tmp/uon/inft2051/lab04/MoveCircle.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/tmp/uon/inft2051/lab04/TileMap.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/CN1Sensors.cn1lib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/CN1Sensors.ver" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/impl/cls/com/codename1/sensors/SensorListener.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/impl/cls/com/codename1/sensors/SensorsManager$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/impl/cls/com/codename1/sensors/SensorsManager$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/impl/cls/com/codename1/sensors/SensorsManager$3.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/impl/cls/com/codename1/sensors/SensorsManager.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/impl/cls/com/codename1/sensors/SensorsNative.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/impl/native/android/com/codename1/sensors/SensorsNativeImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/impl/native/ios/com_codename1_sensors_SensorsNativeImpl.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/impl/native/ios/com_codename1_sensors_SensorsNativeImpl.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/impl/native/j2me/com/codename1/sensors/SensorsNativeImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/impl/native/javase/com/codename1/sensors/SensorsNativeImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/impl/native/rim/com/codename1/sensors/SensorsNativeImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/impl/native/win/com/codename1/sensors/SensorsNativeImpl.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Item.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/SensorsManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JavaSE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/JavaSE.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Versions.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Versions.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/built-jar.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/built-jar.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/CodenameOne.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CodenameOne.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/CodenameOne_SRC.zip" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CodenameOne_SRC.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Attack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Attack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/META-INF/inft2051_lab04.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/Map1_Collision Layer.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/Map1_Tile Layer.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/Map2_Collision Layer.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/Map2_Tile Layer.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/Map3_Collision Layer.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/Map3_Tile Layer.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/caveman_trans.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/generic_platformer_tiles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/heart_32_trans.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/level001.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/level001top.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/map.tmx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/scene01.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/star_coin_32t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/theme.res" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/tileset.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/uon/inft2051/lab04/Character.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/uon/inft2051/lab04/Coin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/uon/inft2051/lab04/GameComponent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/uon/inft2051/lab04/TileMap.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/inft2051_lab04/uon/inft2051/lab04/inft2051_lab04.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/GameComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/GameComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/MoveCircle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/MoveCircle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uon/inft2051/lab04/inft2051_lab04.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uon/inft2051/lab04/inft2051_lab04.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +58,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/uon/inft2051/lab04" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../inft2051_game-master" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -223,8 +207,25 @@
       <option name="project" value="LOCAL" />
       <updated>1571914264224</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="SOUND EFFECTS!">
+      <created>1572235211626</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1572235211626</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
