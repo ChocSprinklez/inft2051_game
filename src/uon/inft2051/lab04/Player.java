@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Player {
 
-    public double dodgeChance = 0.5;
+    public double dodgeChance = 0.2;
     public double blockChance = 0.5;
 
     public int numStrengthPotions;

@@ -28,7 +28,7 @@ public class Enemy
     private int attackDelay;
     private int radius, borderX, borderY, health;
 
-    public Enemy(TileMap tmScene, String fileName, int size, int border, int radius, float scale)
+    public Enemy(TileMap tmScene, String fileName, int size, int border, int radius, float scale, int health)
     {
         this.tmScene = tmScene;
         posX = 0;
@@ -51,7 +51,7 @@ public class Enemy
         spriteIndex = 0;
         isJumping = false;
         this.radius = radius;
-        health = 3;
+        this.health = health;
     }
 
     public int getSceneX()   // stage 3

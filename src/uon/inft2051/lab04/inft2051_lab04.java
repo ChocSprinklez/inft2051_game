@@ -20,6 +20,7 @@ public class inft2051_lab04 {
     private BorderLayout blMain;
 
     private float calculateDPI() {
+        //calculateDPI function is an edit version of calculateDPI from https://www.codenameone.com/manual/appendix-game.html
         float pixels = (Display.getInstance().getDisplayWidth());
         System.out.println("Height: " + Display.getInstance().getDisplayHeight() + " Width: " + Display.getInstance().getDisplayWidth());
         return pixels;

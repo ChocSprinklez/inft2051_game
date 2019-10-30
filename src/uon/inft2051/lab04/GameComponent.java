@@ -82,7 +82,7 @@ public class GameComponent extends Component
         String bottomMapFile = "/Map" + levelNo + "_Tile Layer.csv";
         String topMapFile = "/Map" + levelNo + "_Collision Layer.csv";
 
-
+        //Tileset by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
         tmScene = new TileMap(16, scaleImages);   // stage 3
         tmScene.loadScene(bottomMapFile);   // stage 3
         tmScene.loadImages("/tileset.png", 0);
@@ -95,18 +95,20 @@ public class GameComponent extends Component
         screenX = 0;
         screenY = 0;
 
+        //SpriteSheet by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
         Hero = new Character(tmTop, "/5.png", 16, 0, scaleImages);
         Hero.setSprites(4, 7, 0, 3, 4, 0, 12, 15, 8, 11, 12, 8);
 
         isPressed = false;
 
         setupLevel(load_side);
+        //SpriteSheet by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
         swordSwing = new Attack("/att.png",32,0,Hero,scaleImages);
         turnCircle = new MoveCircle(Hero, tmScene, "/circlefile.png",16,moveSize,scaleImages);
         PlayerTurn = new Turn(Hero, turnCircle);
         try
         {
-            // image from https://openclipart.org/detail/29043/heart
+            //Button images by Ravenmore http://dycha.net/
             imHeart = Image.createImage("/heart.png");
             int x = (int)(64*scaleImages);
             int y = (int)(64*scaleImages);
@@ -121,6 +123,7 @@ public class GameComponent extends Component
 
         try
         {
+            //Button images by Ravenmore http://dycha.net/
             endTurn = Image.createImage("/x.png");
             int x = (int)(64*scaleImages);
             int y = (int)(64*scaleImages);
@@ -133,6 +136,7 @@ public class GameComponent extends Component
         turnEnd = new Button(endTurn, (int)(64*scaleImages), (int)(Display.getInstance().getDisplayWidth() - (64*scaleImages)),(int)(Display.getInstance().getDisplayHeight() - (64*scaleImages)));
         try
         {
+            //Button images by Ravenmore http://dycha.net/
             attack = Image.createImage("/sword.png");
             int x = (int)(64*scaleImages);
             int y = (int)(64*scaleImages);
@@ -144,6 +148,7 @@ public class GameComponent extends Component
 
         attackB = new Button(attack, (int)(64*scaleImages), (int)(0*scaleImages), (int)(Display.getInstance().getDisplayHeight() - (64*scaleImages)));
         try {
+            //Button images by Ravenmore http://dycha.net/
             heal = Image.createImage("/potionHealth.png");
             int x = (int) (64 * scaleImages);
             int y = (int) (64 * scaleImages);
@@ -155,6 +160,7 @@ public class GameComponent extends Component
         healB = new Button(heal, (int) (64 * scaleImages), (int) (226 * scaleImages), (int) (Display.getInstance().getDisplayHeight() - (64 * scaleImages)));
 
         try {
+            //Button images by Ravenmore http://dycha.net/
             evasionPotion = Image.createImage("/potionEvasion.png");
             int x = (int) (64 * scaleImages);
             int y = (int) (64 * scaleImages);
@@ -166,6 +172,7 @@ public class GameComponent extends Component
         evasionPotionB = new Button(evasionPotion, (int) (64 * scaleImages), (int) (310 * scaleImages), (int) (Display.getInstance().getDisplayHeight() - (64 * scaleImages)));
 
         try {
+            //Button images by Ravenmore http://dycha.net/
             strengthPotion = Image.createImage("/potionStrength.png");
             int x = (int) (64 * scaleImages);
             int y = (int) (64 * scaleImages);
@@ -184,6 +191,7 @@ public class GameComponent extends Component
     public void loadMusic() {
         try
         {
+            //Music by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
             backgroundMusic = MediaManager.createBackgroundMedia("jar://theme-2.mp3");
             System.out.println("background music");
             backgroundMusic.play();
@@ -198,6 +206,7 @@ public class GameComponent extends Component
 
     public void setGame_over() {
         try {
+            //Sounds by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
             game_over = MediaManager.createBackgroundMedia("jar://game over.mp3");
             System.out.println("game over.mp3");
         } catch (Exception err) {
@@ -207,6 +216,7 @@ public class GameComponent extends Component
 
     public void setSuccess() {
         try {
+            //Sounds by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
             success = MediaManager.createBackgroundMedia("jar://success.mp3");
             System.out.println("success.mp3");
         } catch (Exception err) {
@@ -216,6 +226,7 @@ public class GameComponent extends Component
 
     public void setAlert() {
         try {
+            //Sounds by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
             alert = MediaManager.createBackgroundMedia("jar://alert.mp3");
         } catch (Exception err) {
             System.out.println("could not load sound alert");
@@ -224,6 +235,7 @@ public class GameComponent extends Component
 
     public void setMenu_close() {
         try {
+            //Sounds by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
             menu_close = MediaManager.createBackgroundMedia("jar://menu close.mp3");
         } catch (Exception err) {
             System.out.println("could not load sound menu close");
@@ -232,6 +244,7 @@ public class GameComponent extends Component
 
     public void setupLevel(String load_side)
     {
+        //SpriteSheet by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
         String EnemyFile = "/monster" + levelNo + ".png";
         alCoins = new ArrayList<Chest>();   // stage 5
         alItems = new ArrayList<Item>();
@@ -249,14 +262,17 @@ public class GameComponent extends Component
                 int startY = Integer.parseInt(tokens[2]);
                 if (name.equals("chest"))
                 {
+                    //Sprites by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
                     Item newItem = new Item("/items.png",16,0,startX,startY,scaleImages);
                     alItems.add(newItem);
+                    //SpriteSheet by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
                     Chest newCoin = new Chest("/little-treasure-chest.png", 16, 0, startX, startY, scaleImages, newItem);
                     alCoins.add(newCoin);
                 }
                 else if (name.equals("enemy"))
                 {
-                    Enemy newEnemy = new Enemy(tmTop,EnemyFile, 16, 0, 4, scaleImages);
+                    //SpriteSheets by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
+                    Enemy newEnemy = new Enemy(tmTop,EnemyFile, 16, 0, 4, scaleImages, 3*levelNo);
                     newEnemy.setSprites(8,11,12,15,8,12,4,7,0,3,4,0);
                     newEnemy.initCharacter(startX,startY,true);
                     alEnemys.add(newEnemy);
@@ -264,18 +280,21 @@ public class GameComponent extends Component
                 }
                 else if (name.equals("doorT"))
                 {
+                    //Sprites by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
                     String side = "top";
                     Door newDoor = new Door("/doors.png",16,0, startX, startY, scaleImages,side, levelNo);
                     doorList.add(newDoor);
                 }
                 else if (name.equals("doorL"))
                 {
+                    //Sprites by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
                     String side = "left";
                     Door newDoor = new Door("/doors.png",16,0, startX, startY, scaleImages,side, levelNo);
                     doorList.add(newDoor);
                 }
                 else if (name.equals("doorR"))
                 {
+                    //Sprites by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
                     String side = "right";
                     Door newDoor = new Door("/doors.png",16,0, startX, startY, scaleImages,side, levelNo);
                     doorList.add(newDoor);
@@ -444,6 +463,7 @@ public class GameComponent extends Component
                     thisItem.setSprite(0);
                     player.addHealthPotion();
                     try {
+                        //Sounds by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
                         click = MediaManager.createBackgroundMedia("jar://menu.mp3");
                     } catch (Exception err) {
                         System.out.println("could not load sound click");
@@ -454,6 +474,7 @@ public class GameComponent extends Component
                     thisItem.setSprite(0);
                     player.addEvasionPotion();
                     try {
+                        //Sounds by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
                         click = MediaManager.createBackgroundMedia("jar://menu.mp3");
                     } catch (Exception err) {
                         System.out.println("could not load sound click");
@@ -464,6 +485,7 @@ public class GameComponent extends Component
                     thisItem.setSprite(0);
                     player.addStrengthPotion();
                     try {
+                        //Sounds by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
                         click = MediaManager.createBackgroundMedia("jar://menu.mp3");
                     } catch (Exception err) {
                         System.out.println("could not load sound click");
@@ -478,6 +500,7 @@ public class GameComponent extends Component
             if (!PlayerTurn.attackUsed) {
                 swordSwing.doAttack(Hero);
                 try {
+                    //Sounds by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
                     click = MediaManager.createBackgroundMedia("jar://menu.mp3");
                 } catch (Exception err) {
                     System.out.println("could not load sound click");
@@ -496,6 +519,7 @@ public class GameComponent extends Component
                 lives++;
                 player.numHealthPotions--;
                 try {
+                    //Sounds by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
                     click = MediaManager.createBackgroundMedia("jar://menu.mp3");
                 } catch (Exception err) {
                     System.out.println("could not load sound click");
@@ -511,11 +535,12 @@ public class GameComponent extends Component
 
         if (evasionPotionB.isClicked(releaseX, releaseY)) {
             if (player.numEvasionPotions > 0) {
-                //player.dodgeChance += 0.25;
+                player.dodgeChance *= 1.25;
                 turnCircle.changeSize(turnCircle.circleSize += 1);
                 moveSize++;
                 player.numEvasionPotions--;
                 try {
+                    //Sounds by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
                     click = MediaManager.createBackgroundMedia("jar://menu.mp3");
                 } catch (Exception err) {
                     System.out.println("could not load sound click");
@@ -534,6 +559,7 @@ public class GameComponent extends Component
                 player.currentWeapon.maxDamage += 3;
                 player.numStrengthPotions--;
                 try {
+                    //Sounds by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
                     click = MediaManager.createBackgroundMedia("jar://menu.mp3");
                 } catch (Exception err) {
                     System.out.println("could not load sound click");
@@ -569,6 +595,7 @@ public class GameComponent extends Component
                     if (!thisChest.isOpen()) {
                         score += 10;
                         try {
+                            //Sounds by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
                             chest = MediaManager.createBackgroundMedia("jar://chest.mp3");
                             chest.play();
                         }
@@ -679,6 +706,7 @@ public class GameComponent extends Component
                     PlayerTurn.attack();
                     if (attackSound == 0) {
                         try {
+                            //Sounds by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
                             sword = MediaManager.createBackgroundMedia("jar://sword.mp3");
                             sword.play();
                         } catch (Exception err) {
@@ -691,6 +719,7 @@ public class GameComponent extends Component
                     alEnemys.remove(thisEnemy);
                     enemies--;
                     try {
+                        //Sounds by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
                         kill = MediaManager.createBackgroundMedia("jar://kill.mp3");
                         kill.play();
                     } catch (Exception err) {
@@ -731,6 +760,7 @@ public class GameComponent extends Component
                         }
                         playsound++;
                         try {
+                            //Sounds by Pixel-boy at Sparklin Labs  http://superpowers-html5.com/
                             enemy = MediaManager.createBackgroundMedia("jar://enemy.mp3");
                         } catch (Exception err) {
                             System.out.println("could not load sound enemy");
@@ -743,7 +773,10 @@ public class GameComponent extends Component
                     }
                     if (Hero.collide(thisEnemy)) {
                         if (thisEnemy.getAttackDelay() == 0) {
-                            lives--;
+                            Random RAND = new Random();
+                            double rand = RAND.nextDouble();
+                            if (rand > player.dodgeChance)
+                                lives--;
                             thisEnemy.setAttackDelay(10);
                             sMessage = "Life lost";
                             if (lives == 0) {
